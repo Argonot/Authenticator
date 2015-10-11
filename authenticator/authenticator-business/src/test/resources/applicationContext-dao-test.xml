@@ -8,13 +8,13 @@
            http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
  <context:annotation-config />
- <context:component-scan base-package="org.argonot.authentificator" />
+ <context:component-scan base-package="org.argonot.authenticator" />
 
  <!-- BoneCP configuration -->
  <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
   destroy-method="close">
   <property name="driverClass" value="org.hsqldb.jdbcDriver" />
-  <property name="jdbcUrl" value="jdbc:hsqldb:mem:argonot-authentificator-test;shutdown=false" />
+  <property name="jdbcUrl" value="jdbc:hsqldb:mem:argonot-authenticator-test;shutdown=false" />
   <property name="username" value="sa" />
   <property name="password" value="" />
   <property name="idleConnectionTestPeriodInMinutes" value="60" />
@@ -28,7 +28,7 @@
  </bean>
 
  <!-- SPRING - JPA -->
- <jpa:repositories base-package="org.argonot.authentificator.business.repository" />
+ <jpa:repositories base-package="org.argonot.authenticator.business.repository" />
 
  <bean class="org.springframework.orm.jpa.JpaTransactionManager"
   id="transactionManager">
@@ -41,7 +41,7 @@
  <bean id="entityManagerFactory"
   class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
   <property name="dataSource" ref="dataSource" />
-  <property name="packagesToScan" value="org.argonot.authentificator.business.entity" />
+  <property name="packagesToScan" value="org.argonot.authenticator.business.entity" />
   <property name="jpaVendorAdapter">
    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
     <property name="generateDdl" value="false" />

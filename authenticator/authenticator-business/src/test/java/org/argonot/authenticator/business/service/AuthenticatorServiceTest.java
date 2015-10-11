@@ -16,29 +16,28 @@ public class AuthenticatorServiceTest extends AbstractRepositoryTest {
     private static final String WRONG_PASSWORD = "WrongTest1.";
     private static final String RIGHT_APP = "FRG";
     private static final String WRONG_APP = "ARS";
-    private static final String SESSION_ID = "sessionId";
 
     @Autowired
     AuthenticationService authentificationService;
 
     @Test
     public void testAuthentificationSuccess() {
-        assertNotNull(authentificationService.authentificateUser(RIGHT_EMAIL, RIGHT_PASSWORD, RIGHT_APP, SESSION_ID));
+        assertNotNull(authentificationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
     }
 
     @Test
     public void testAuthentificationFailureForEmail() {
-        assertNull(authentificationService.authentificateUser(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP, SESSION_ID));
+        assertNull(authentificationService.authenticateUser(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
     }
 
     @Test
     public void testAuthentificationFailureForPassword() {
-        assertNull(authentificationService.authentificateUser(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP, SESSION_ID));
+        assertNull(authentificationService.authenticateUser(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP));
     }
 
     @Test
     public void testAuthentificationFailureForApp() {
-        assertNull(authentificationService.authentificateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP, SESSION_ID));
+        assertNull(authentificationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
     }
 
 }

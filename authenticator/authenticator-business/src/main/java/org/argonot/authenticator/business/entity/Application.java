@@ -32,7 +32,7 @@ public class Application {
      */
     @Id
     @Column(name = "AUID", unique = true, nullable = false, length=STRING_ID_MAX_LENGTH)
-    private String appUID;
+    private String id;
 
     /**
      * The name of the group
@@ -46,12 +46,12 @@ public class Application {
     @OneToMany(mappedBy = "app", fetch = FetchType.EAGER)
     private Set<Authorization> authorizations;
 
-    public String getAppUID() {
-        return appUID;
+    public String getId() {
+        return id;
     }
 
-    public void setAppUID(String appUID) {
-        this.appUID = appUID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

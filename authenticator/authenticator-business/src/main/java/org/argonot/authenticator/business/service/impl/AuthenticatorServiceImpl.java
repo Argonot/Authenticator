@@ -29,7 +29,7 @@ public class AuthenticatorServiceImpl implements AuthenticationService {
     @Override
     public boolean isAuthorized(String email, String password, String appUID) {
         User user = userRepository.findByEmail(email);
-        if(user != null && user.getPassword().equals(CipherUtils.encrypt(password)) && authorizationRepository.findByUser(user).getApp().getAppUID().equals(appUID)) {
+        if(user != null && user.getPassword().equals(CipherUtils.encrypt(password)) && authorizationRepository.findByUser(user).getApp().getId().equals(appUID)) {
             return true;
         }
         return false;
@@ -39,10 +39,9 @@ public class AuthenticatorServiceImpl implements AuthenticationService {
      * {@inheritDoc}
      */
     @Override
-    public User authentificateUser(String email, String password, String appUID, String sessionId) {
+    public User authenticateUser(String email, String password, String appUID) {
         if(isAuthorized(email, password, appUID)) {
             User user = userRepository.findByEmail(email);
-            user.setSessionId(sessionId);
             return user;
         }
         return null;

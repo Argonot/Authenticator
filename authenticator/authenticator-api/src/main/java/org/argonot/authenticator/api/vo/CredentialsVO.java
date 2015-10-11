@@ -33,6 +33,11 @@ public class CredentialsVO {
      * User's surname
      */
     private String surname;
+    
+    /**
+     * User's unique token
+     */
+    private String tokenId;
 
     public String getEmail() {
         return email;
@@ -72,6 +77,14 @@ public class CredentialsVO {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
     }
 
 }

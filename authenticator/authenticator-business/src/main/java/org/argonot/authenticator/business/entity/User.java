@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -70,10 +69,10 @@ public class User {
     private String password;
 
     /**
-     * User session Id
+     * User token
      */
-    @Transient
-    private String sessionId;
+    @Column(nullable=true)
+    private String token;
 
     /**
      * Users authorizations
@@ -129,20 +128,20 @@ public class User {
         this.password = password;
     }
 
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
     public Set<Authorization> getAuthorizations() {
         return authorizations;
     }
 
     public void setAuthorizations(Set<Authorization> authorizations) {
         this.authorizations = authorizations;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

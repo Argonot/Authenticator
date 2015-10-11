@@ -27,9 +27,8 @@ public interface AuthenticationService {
      * @param email : user entered email
      * @param password : user entered password
      * @param appUID : application unique identifier
-     * @param sessionId : session unique identifier
      * @return success : user | fail : null
      */
-    User authentificateUser(String email, String password, String appUID, String sessionId);
+    User authenticateUser(String email, String password, String appUID);
 
 }

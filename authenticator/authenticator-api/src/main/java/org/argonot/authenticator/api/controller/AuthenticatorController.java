@@ -3,8 +3,6 @@
 
 package org.argonot.authenticator.api.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.service.AuthenticationService;
@@ -24,7 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @Controller
 @SessionAttributes({"userSession"})
-@RequestMapping("/authentificator")
+@RequestMapping("/authenticator")
 public class AuthenticatorController {
 
     @Autowired
@@ -38,10 +36,10 @@ public class AuthenticatorController {
      * 
      * @return json string
      */
-    @RequestMapping(value = "/authentificate/user", method = RequestMethod.POST, headers="Accept=application/json")
+    @RequestMapping(value = "/authenticate/user", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
-    public CredentialsVO authentificateUser(@RequestBody CredentialsVO credentials, HttpSession session) {
-        User userSession =  authenticationService.authentificateUser(credentials.getEmail(), credentials.getPassword(), credentials.getAuid(), session.getId());
+    public CredentialsVO authenticateUser(@RequestBody CredentialsVO credentials) {
+        User userSession =  authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(), credentials.getAuid());
         return mapper.map(userSession, CredentialsVO.class);
     }
 

@@ -20,7 +20,7 @@
  </bean>
 
  <!-- Auto scan the Controller components -->
- <context:component-scan base-package="org.argonot.authentificator.api" />
+ <context:component-scan base-package="org.argonot.authenticator.api" />
  <mvc:annotation-driven />
 
  <mvc:resources mapping="/resources/**" location="/resources/" />
