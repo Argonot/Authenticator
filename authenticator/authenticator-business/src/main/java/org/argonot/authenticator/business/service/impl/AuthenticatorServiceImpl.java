@@ -8,7 +8,7 @@ import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.repository.AuthorizationRepository;
 import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.service.AuthenticationService;
-import org.argonot.authenticator.commons.utils.CipherUtils;
+import org.argonot.commons.utils.CipherUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
