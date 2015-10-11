@@ -14,6 +14,7 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>argonot-commons</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<!-- JUnit testing framework -->
 		<dependency>
