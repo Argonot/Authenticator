@@ -41,8 +41,7 @@ public class AuthenticatorServiceImpl implements AuthenticationService {
     @Override
     public User authenticateUser(String email, String password, String appUID) {
         if(isAuthorized(email, password, appUID)) {
-            User user = userRepository.findByEmail(email);
-            return user;
+            return userRepository.findByEmail(email);
         }
         return null;
     }
