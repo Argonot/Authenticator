@@ -1,7 +1,5 @@
 package org.argonot.authenticator.api.controller;
 
-import static org.junit.Assert.*;
-
 import org.argonot.authenticator.utils.AbstractControllerTest;
 import org.junit.Test;
 
