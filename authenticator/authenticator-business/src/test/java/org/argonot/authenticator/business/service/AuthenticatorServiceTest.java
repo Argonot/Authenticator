@@ -4,11 +4,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.argonot.authenticator.business.service.AuthenticationService;
-import org.argonot.authenticator.business.util.AbstractRepositoryTest;
+import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AuthenticatorServiceTest extends AbstractRepositoryTest {
+public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest {
 
     private static final String RIGHT_EMAIL = "meidi.airouche@gmail.com";
     private static final String RIGHT_PASSWORD = "Test1.";
@@ -21,23 +21,43 @@ public class AuthenticatorServiceTest extends AbstractRepositoryTest {
     AuthenticationService authentificationService;
 
     @Test
-    public void testAuthentificationSuccess() {
+    public void testAuthenticateUserSuccess() {
         assertNotNull(authentificationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
     }
 
     @Test
-    public void testAuthentificationFailureForEmail() {
+    public void testAuthenticateUserFailureForEmail() {
         assertNull(authentificationService.authenticateUser(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
     }
 
     @Test
-    public void testAuthentificationFailureForPassword() {
+    public void testAuthenticateUserFailureForPassword() {
         assertNull(authentificationService.authenticateUser(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP));
     }
 
     @Test
-    public void testAuthentificationFailureForApp() {
+    public void testAuthenticateUserFailureForApp() {
         assertNull(authentificationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
+    }
+    
+    @Test
+    public void testAuthenticateUserWithLockStrategySuccess() {
+        assertNotNull(authentificationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
+    }
+
+    @Test
+    public void testAuthenticateUserWithLockStrategyFailureForEmail() {
+        assertNull(authentificationService.authenticateUserWithLockStrategy(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
+    }
+
+    @Test
+    public void testAuthenticateUserWithLockStrategyFailureForPassword() {
+        assertNull(authentificationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP));
+    }
+
+    @Test
+    public void testAuthenticateUserWithLockStrategyFailureForApp() {
+        assertNull(authentificationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
     }
 
 }

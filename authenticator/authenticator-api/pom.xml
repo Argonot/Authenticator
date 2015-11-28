@@ -59,10 +59,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-		</dependency>
 		<!-- SPRING DATA -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>

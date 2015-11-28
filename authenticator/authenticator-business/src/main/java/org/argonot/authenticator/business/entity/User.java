@@ -67,12 +67,18 @@ public class User {
      */
     @Column(nullable=false)
     private String password;
-
+    
     /**
-     * User token
+     * Authentication tries
      */
-    @Column(nullable=true)
-    private String token;
+    @Column
+    private int tries;
+    
+    /**
+     * Locked
+     */
+    @Column
+    private boolean locked;
 
     /**
      * Users authorizations
@@ -136,12 +142,20 @@ public class User {
         this.authorizations = authorizations;
     }
 
-    public String getToken() {
-        return token;
+    public int getTries() {
+        return tries;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setTries(int tries) {
+        this.tries = tries;
     }
 
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+    
 }

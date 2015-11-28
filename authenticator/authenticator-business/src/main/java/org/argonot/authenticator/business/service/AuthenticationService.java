@@ -14,21 +14,21 @@ import org.argonot.authenticator.business.entity.User;
 public interface AuthenticationService {
 
     /**
-     * Say if the User is authorized to use the given application
-     * @param email : user entered email
-     * @param password : user entered password
-     * @param appUID : Application unique identifier
-     * @return <b>True</b> : Access granted <br/> <b>False</b> : Access denied
-     */
-    boolean isAuthorized(String email, String password, String appUID);
-
-    /**
-     * Try to authentificate a User by email and password provided
+     * Try to authenticate a User by email and password provided
      * @param email : user entered email
      * @param password : user entered password
      * @param appUID : application unique identifier
      * @return success : user | fail : null
      */
     User authenticateUser(String email, String password, String appUID);
+    
+    /**
+     * Try to authenticate a User by email and password provided with three tries before the account is locked
+     * @param email
+     * @param password
+     * @param appUID
+     * @return
+     */
+    User authenticateUserWithLockStrategy(String email, String password, String appUID);
 
 }

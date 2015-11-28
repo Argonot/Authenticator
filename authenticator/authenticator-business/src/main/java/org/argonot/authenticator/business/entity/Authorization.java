@@ -20,43 +20,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "authorizations")
 public class Authorization {
-
-    /**
-     * Authorization unique identifier
-     */
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_authorization", unique = true, nullable = false)
+    @Column(name = "id_auth", unique = true, nullable = false)
     private long id;
 
     /**
      * User owning the authorization
      */
     @ManyToOne
-    @JoinColumn(name = "id_user", updatable = false, insertable = false)
+    @JoinColumn(name="id_user")
     private User user;
 
     /**
      * Application concerned about the authorization
      */
     @ManyToOne
-    @JoinColumn(name = "AUID", updatable = false, insertable = false)
+    @JoinColumn(name="AUID")
     private Application app;
-
-    /**
-     * Role granted to the User for this Application
-     */
-    @ManyToOne
-    @JoinColumn(name = "RUID", updatable = false, insertable = false)
-    private Role role;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public User getUser() {
         return user;
@@ -73,14 +55,5 @@ public class Authorization {
     public void setApp(Application app) {
         this.app = app;
     }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
 
 }

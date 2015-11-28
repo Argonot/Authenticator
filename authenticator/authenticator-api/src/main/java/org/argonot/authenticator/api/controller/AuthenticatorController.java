@@ -39,8 +39,8 @@ public class AuthenticatorController {
     @RequestMapping(value = "/authenticate/user", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
     public CredentialsVO authenticateUser(@RequestBody CredentialsVO credentials) {
-        User userSession =  authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(), credentials.getAuid());
-        return mapper.map(userSession, CredentialsVO.class);
+        User user =  authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(), credentials.getAuid());
+        return mapper.map(user, CredentialsVO.class);
     }
 
 }

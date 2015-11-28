@@ -4,7 +4,11 @@
 package org.argonot.authenticator.business.service.impl;
 
 
+import org.apache.log4j.Logger;
+import org.argonot.authenticator.business.entity.Application;
+import org.argonot.authenticator.business.entity.Authorization;
 import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.repository.ApplicationRepository;
 import org.argonot.authenticator.business.repository.AuthorizationRepository;
 import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.service.AuthenticationService;
@@ -17,33 +21,113 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class AuthenticatorServiceImpl implements AuthenticationService {
 
+    /**
+     * Maximum number of authentication tries
+     */
+    private static final int AUTHENTICATION_MAX_TRIES = 3;
+
+    /**
+     * Application logger
+     */
+    private static final Logger LOGGER = Logger.getLogger(AuthenticatorServiceImpl.class);
+
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private AuthorizationRepository authorizationRepository;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isAuthorized(String email, String password, String appUID) {
-        User user = userRepository.findByEmail(email);
-        if(user != null && user.getPassword().equals(CipherUtils.encrypt(password)) && authorizationRepository.findByUser(user).getApp().getId().equals(appUID)) {
-            return true;
-        }
-        return false;
-    }
+    @Autowired
+    private ApplicationRepository applicationRepository;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public User authenticateUser(String email, String password, String appUID) {
-        if(isAuthorized(email, password, appUID)) {
-            return userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
+        if(user != null && isAuthorizedUser(user, password, appUID)) {
+            LOGGER.info("Authentication success for user " + email + "on application " + appUID);
+            return user;
         }
+        LOGGER.warn("Authentication failure for user " + email + " on " + appUID);
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User authenticateUserWithLockStrategy(String email, String password, String appUID) {
+        User user = userRepository.findByEmail(email);
+        if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked() && user.getTries() < AUTHENTICATION_MAX_TRIES) {
+            LOGGER.info("Authentication success for user " + email + "on application " + appUID);
+            return user;
+        }
+        LOGGER.warn("Authentication failure for user " + email);
+        processAuthenticationFailure(user);
+        return null;
+    }
+
+    /**
+     * Say if the User is authorized to use the given application
+     * @param email : user entered email
+     * @param password : user entered password
+     * @param appUID : Application unique identifier
+     * @return <b>True</b> : Authorized <br/> <b>False</b> : Unauthorized
+     */
+    private boolean isAuthorizedUser(User user, String password, String appUID) {
+        Application app = applicationRepository.findOne(appUID);
+        if(app != null) {
+            Authorization authorization = authorizationRepository.findByUserAndApp(user, app);
+            if(authorization != null && user.getPassword().equals(CipherUtils.encrypt(password)) && authorization.getApp().getId().equals(appUID)) {
+                LOGGER.info("Found authorization for user " + user.getEmail() + " on application " + authorization.getApp().getName());
+                return true;
+            }
+            LOGGER.warn("Authorization not found for user " + user.getEmail() + " on application " + appUID);
+        } else {
+            LOGGER.error("Authorization cannot be found because the authenticating application code doesn't exist or is empty");
+        }
+        return false;
+    }
+
+    /**
+     * Process all the actions needed against authentication failure<br>
+     * - Increment the user's authentication failure count for a known email
+     * - Lock the user's account if there are 3 authentication failure streak for a known email
+     * @param user : the user who failed the authentication
+     */
+    private void processAuthenticationFailure(User user) {
+        if(user != null) {
+            recordAuthenticationFailureAsTry(user);
+            lockCompromisedAccount(user);
+        } else {
+            LOGGER.warn("Impossible to record authentication failure. The user doesn't exist in the system.");
+        }
+    }
+
+    /**
+     * Increment the user's authentication failure count for a known email
+     * @param user : the user who failed the authentication
+     */
+    private void recordAuthenticationFailureAsTry(User user) {
+        if(user.getTries() < AUTHENTICATION_MAX_TRIES) {
+            user.setTries(user.getTries() + 1);
+            userRepository.save(user);
+            LOGGER.warn("Authentication failure recorded for user " + user.getEmail());
+            LOGGER.warn("New user authentication failure streak count : " + user.getTries());
+        }
+    }
+
+    /**
+     * Lock the user's account if there are 3 authentication failure streak for a known email
+     * @param user : the user who failed the authentication
+     */
+    private void lockCompromisedAccount(User user) {
+        if(user.getTries() == AUTHENTICATION_MAX_TRIES) {
+            user.setLocked(true);
+            userRepository.save(user);
+            LOGGER.warn("User account was locked by the system for user " + user.getEmail());
+        }
+    }
 }
