@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("AuthentificatorService")
+@Service("AuthenticationService")
 @Transactional
-public class AuthenticatorServiceImpl implements AuthenticationService {
+public class AuthenticationServiceImpl implements AuthenticationService {
 
     /**
      * Maximum number of authentication tries
@@ -29,7 +29,7 @@ public class AuthenticatorServiceImpl implements AuthenticationService {
     /**
      * Application logger
      */
-    private static final Logger LOGGER = Logger.getLogger(AuthenticatorServiceImpl.class);
+    private static final Logger LOGGER = Logger.getLogger(AuthenticationServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;

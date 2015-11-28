@@ -32,14 +32,26 @@ public class AuthenticatorController {
     private AuthenticationService authenticationService;
 
     /**
-     * Authentificate a User
-     * 
-     * @return json string
+     * Simply authenticate a User from his credentials
+     * @param credentials : user authentication information
+     * @return credentials in json
      */
     @RequestMapping(value = "/authenticate/user", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
     public CredentialsVO authenticateUser(@RequestBody CredentialsVO credentials) {
         User user =  authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(), credentials.getAuid());
+        return mapper.map(user, CredentialsVO.class);
+    }
+    
+    /**
+     * Authenticate a User from his credentials with 3 tries before account lock
+     * @param credentials : user authentication information
+     * @return credentials in json
+     */
+    @RequestMapping(value = "/secure/authenticate/user", method = RequestMethod.POST, headers="Accept=application/json")
+    @ResponseBody
+    public CredentialsVO secureAuthenticateUser(@RequestBody CredentialsVO credentials) {
+        User user =  authenticationService.authenticateUserWithLockStrategy(credentials.getEmail(), credentials.getPassword(), credentials.getAuid());
         return mapper.map(user, CredentialsVO.class);
     }
 

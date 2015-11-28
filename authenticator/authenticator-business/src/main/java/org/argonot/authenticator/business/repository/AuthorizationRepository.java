@@ -15,5 +15,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AuthorizationRepository extends JpaRepository<Authorization, Long> {
 
+    /**
+     * Find an authorization for a requesting user/app
+     * @param user : user requesting an authorization
+     * @param app : application requesting the user authentication
+     * @return 
+     */
     Authorization findByUserAndApp(User user, Application app);
 }

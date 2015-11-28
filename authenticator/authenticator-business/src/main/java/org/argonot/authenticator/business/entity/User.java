@@ -72,13 +72,13 @@ public class User {
      * Authentication tries
      */
     @Column
-    private int tries;
+    private int tries = 0;
     
     /**
      * Locked
      */
     @Column
-    private boolean locked;
+    private boolean locked = false;
 
     /**
      * Users authorizations

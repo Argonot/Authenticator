@@ -40,6 +40,14 @@ public class Authorization {
     @JoinColumn(name="AUID")
     private Application app;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
