@@ -72,7 +72,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         processAuthenticationFailure(user);
         return null;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -81,10 +81,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmail(email);
         if(user != null) {
             return user.isLocked(); 
-        } else {
-            LOGGER.warn("Impossible to check user lock. The user " + email + " doesn't exists.");
         }
-        return null;
+        LOGGER.warn("Impossible to check user lock. The user " + email + " doesn't exists.");
+        return false;
     }
 
     /**

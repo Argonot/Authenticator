@@ -1,5 +1,6 @@
 package org.argonot.authenticator.business.service;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -70,8 +71,13 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
     }
 
     @Test
-    public void testAuthenticateUserWithLockStrategyFailureTooMuchTries() {
+    public void testUserIsLocked() {
         assertTrue(authenticationService.isUserLocked(EMAIL_USER_LOCKED));
+    }
+    
+    @Test
+    public void testUnknownUserIsLocked() {
+        assertFalse(authenticationService.isUserLocked(WRONG_EMAIL));
     }
     
     @Test
