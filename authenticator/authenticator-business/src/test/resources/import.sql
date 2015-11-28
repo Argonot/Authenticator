@@ -3,4 +3,5 @@ INSERT INTO users (name, surname, birth, email, password, locked, tries) VALUES 
 INSERT INTO applications(AUID, name) VALUES('TKP', 'Trello KPI');
 INSERT INTO applications(AUID, name) VALUES('FRG', 'Forge Argonot');
 INSERT INTO authorizations(id_user, AUID) VALUES(1, 'FRG');
+INSERT INTO authorizations(id_user, AUID) VALUES(2, 'FRG');
 INSERT INTO authorizations(id_user, AUID) VALUES(2, 'TKP');

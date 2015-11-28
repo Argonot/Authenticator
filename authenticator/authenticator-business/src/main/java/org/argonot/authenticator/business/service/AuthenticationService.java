@@ -31,4 +31,11 @@ public interface AuthenticationService {
      */
     User authenticateUserWithLockStrategy(String email, String password, String appUID);
 
+    /**
+     * Tell if a User is locked or not. Available for admin profiles only.
+     * @param email : user's email
+     * @return
+     */
+    Boolean isUserLocked(String email);
+
 }
