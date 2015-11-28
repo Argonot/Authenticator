@@ -25,10 +25,10 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
 
     @Autowired
     AuthenticationService authenticationService;
-    
+
     @Before
     public void setUpTests() {
-        
+
     }
 
     @Test
@@ -50,17 +50,12 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
     public void testAuthenticateUserFailureForApp() {
         assertNull(authenticationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
     }
-    
-    @Test
-    public void testAuthenticateLockedUserFail() {
-        assertNull(authenticationService.authenticateUser(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP));
-    }
-    
+
     @Test
     public void testAuthenticateExistingUserUnauthorizedFail() {
         assertNull(authenticationService.authenticateUser(EMAIL_USER_UNAUTHORIZED, RIGHT_PASSWORD, RIGHT_APP));
     }
-    
+
     @Test
     public void testAuthenticateUserWithLockStrategySuccess() {
         assertNotNull(authenticationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
@@ -85,12 +80,17 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
     public void testUserIsLocked() {
         assertTrue(authenticationService.isUserLocked(EMAIL_USER_LOCKED));
     }
-    
+
     @Test
     public void testUnknownUserIsLocked() {
         assertFalse(authenticationService.isUserLocked(WRONG_EMAIL));
     }
-    
+
+    @Test
+    public void testAuthenticateLockedUserWithLockStrategyFail() {
+        assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP));
+    }
+
     @Test
     public void testTooMuchAuthenticationLockAccount() {
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
