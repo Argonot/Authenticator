@@ -11,6 +11,7 @@ public class AuthenticatorControllerTest extends AbstractControllerTest {
     
     private static final String HTTP_POST_METHOD = "POST";
     private static final String AUTHENTICATION_ROUTE = "/authenticator/authenticate/user";
+    private static final String SECURE_AUTHENTICATION_ROUTE = "/authenticator/secure/authenticate/user";
     private static final ObjectMapper jsonMapper = new ObjectMapper();
     
     private static final CredentialsVO credentials = new CredentialsVO();
@@ -26,5 +27,11 @@ public class AuthenticatorControllerTest extends AbstractControllerTest {
     public void testAuthenticateUser() throws Exception {
         this.request.setContent(jsonMapper.writeValueAsBytes(credentials));
         this.testJsonObjectRoute(AUTHENTICATION_ROUTE, HTTP_POST_METHOD);
+    }
+    
+    @Test
+    public void testSecureAuthenticateUser() throws Exception {
+        this.request.setContent(jsonMapper.writeValueAsBytes(credentials));
+        this.testJsonObjectRoute(SECURE_AUTHENTICATION_ROUTE, HTTP_POST_METHOD);
     }
 }

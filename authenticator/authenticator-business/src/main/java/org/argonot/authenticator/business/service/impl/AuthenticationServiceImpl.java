@@ -3,7 +3,6 @@
 
 package org.argonot.authenticator.business.service.impl;
 
-
 import org.apache.log4j.Logger;
 import org.argonot.authenticator.business.entity.Application;
 import org.argonot.authenticator.business.entity.Authorization;
@@ -17,6 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * <b>AuthenticationService</b> implementation
+ * @author Meidi
+ *
+ */
 @Service("AuthenticationService")
 @Transactional
 public class AuthenticationServiceImpl implements AuthenticationService {
