@@ -15,6 +15,7 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
 
     private static final String RIGHT_EMAIL = "meidi.airouche@gmail.com";
     private static final String EMAIL_USER_LOCKED = "test@gmail.com";
+    private static final String EMAIL_USER_UNAUTHORIZED = "userunauthorized@gmail.com";
     private static final String EMAIL_USER_TO_LOCK = "willbelocked@gmail.com";
     private static final String RIGHT_PASSWORD = "Test1.";
     private static final String WRONG_EMAIL = "wrongtest@argonot.org";
@@ -48,6 +49,16 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
     @Test
     public void testAuthenticateUserFailureForApp() {
         assertNull(authenticationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
+    }
+    
+    @Test
+    public void testAuthenticateLockedUserFail() {
+        assertNull(authenticationService.authenticateUser(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP));
+    }
+    
+    @Test
+    public void testAuthenticateExistingUserUnauthorizedFail() {
+        assertNull(authenticationService.authenticateUser(EMAIL_USER_UNAUTHORIZED, RIGHT_PASSWORD, RIGHT_APP));
     }
     
     @Test
