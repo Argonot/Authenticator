@@ -14,6 +14,7 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
 
     private static final String RIGHT_EMAIL = "meidi.airouche@gmail.com";
     private static final String EMAIL_USER_LOCKED = "test@gmail.com";
+    private static final String EMAIL_USER_TO_LOCK = "willbelocked@gmail.com";
     private static final String RIGHT_PASSWORD = "Test1.";
     private static final String WRONG_EMAIL = "wrongtest@argonot.org";
     private static final String WRONG_PASSWORD = "WrongTest1.";
@@ -71,5 +72,13 @@ public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest 
     @Test
     public void testAuthenticateUserWithLockStrategyFailureTooMuchTries() {
         assertTrue(authenticationService.isUserLocked(EMAIL_USER_LOCKED));
+    }
+    
+    @Test
+    public void testTooMuchAuthenticationLockAccount() {
+        authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
+        authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
+        authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
+        assertTrue(authenticationService.isUserLocked(EMAIL_USER_TO_LOCK));
     }
 }

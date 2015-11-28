@@ -1,6 +1,6 @@
 package org.argonot.authenticator.api.controller;
 
-import org.argonot.authenticator.utils.AbstractControllerTest;
+import org.argonot.authenticator.api.utils.AbstractControllerTest;
 import org.junit.Test;
 
 public class HomeControllerTest extends AbstractControllerTest {

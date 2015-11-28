@@ -1,4 +1,4 @@
-package org.argonot.authenticator.utils;
+package org.argonot.authenticator.api.utils;
 
 import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.ModelAndViewAssert.assertViewName;

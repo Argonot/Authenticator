@@ -2,8 +2,8 @@ package org.argonot.authenticator.api.controller;
 
 import static org.junit.Assert.assertTrue;
 
+import org.argonot.authenticator.api.utils.AbstractControllerTest;
 import org.argonot.authenticator.api.vo.CredentialsVO;
-import org.argonot.authenticator.utils.AbstractControllerTest;
 import org.junit.Before;
 import org.junit.Test;
 
