@@ -4,7 +4,9 @@ INSERT INTO users (name, surname, birth, email, password, locked, tries) VALUES 
 INSERT INTO users (name, surname, birth, email, password, locked, tries) VALUES ('UserUnauthorized', 'UserUnauthorized', '1989-11-12', 'userunauthorized@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO applications(AUID, name) VALUES('TKP', 'Trello KPI');
 INSERT INTO applications(AUID, name) VALUES('FRG', 'Forge Argonot');
-INSERT INTO authorizations(id_user, AUID) VALUES(1, 'FRG');
-INSERT INTO authorizations(id_user, AUID) VALUES(2, 'FRG');
-INSERT INTO authorizations(id_user, AUID) VALUES(2, 'TKP');
-INSERT INTO authorizations(id_user, AUID) VALUES(3, 'FRG');
+INSERT INTO roles(RUID, name) VALUES ('ADM', 'ADMIN');
+INSERT INTO roles(RUID, name) VALUES ('USR', 'USER');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(1, 'FRG', 'ADM');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(2, 'FRG', 'USR');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(2, 'TKP', 'USR');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(3, 'FRG', 'USR');

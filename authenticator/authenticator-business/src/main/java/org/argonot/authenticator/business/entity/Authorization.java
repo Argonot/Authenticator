@@ -39,6 +39,13 @@ public class Authorization {
     @ManyToOne
     @JoinColumn(name="AUID")
     private Application app;
+    
+    /**
+     * User role for an app
+     */
+    @ManyToOne
+    @JoinColumn(name="RUID")
+    private Role role;
 
     public long getId() {
         return id;
