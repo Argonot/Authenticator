@@ -1,7 +1,7 @@
 /* This software is the exclusive property of Argonot.
  * © Argonot.fr 2015 - All rights reserved */
 
-package org.argonot.authenticator.business.entity;
+package org.argonot.authenticator.business.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

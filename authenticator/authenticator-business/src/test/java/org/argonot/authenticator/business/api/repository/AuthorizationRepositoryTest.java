@@ -1,9 +1,10 @@
-package org.argonot.authenticator.business.repository;
+package org.argonot.authenticator.business.api.repository;
 
 import static org.junit.Assert.*;
 
-import org.argonot.authenticator.business.entity.Application;
-import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.api.entity.Application;
+import org.argonot.authenticator.business.api.entity.User;
+import org.argonot.authenticator.business.api.repository.AuthorizationRepository;
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -1,9 +1,9 @@
 /* This software is the exclusive property of Argonot.
  * © Argonot.fr 2015 - All rights reserved */
 
-package org.argonot.authenticator.business.service;
+package org.argonot.authenticator.business.api.service;
 
-import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.api.entity.User;
 
 
 /**
