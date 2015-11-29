@@ -28,7 +28,7 @@
  </bean>
 
  <!-- SPRING - JPA -->
- <jpa:repositories base-package="org.argonot.authenticator.business.repository" />
+ <jpa:repositories base-package="org.argonot.authenticator.business" />
 
  <bean class="org.springframework.orm.jpa.JpaTransactionManager"
   id="transactionManager">
@@ -41,7 +41,7 @@
  <bean id="entityManagerFactory"
   class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
   <property name="dataSource" ref="dataSource" />
-  <property name="packagesToScan" value="org.argonot.authenticator.business.entity" />
+  <property name="packagesToScan" value="org.argonot.authenticator.business" />
   <property name="jpaVendorAdapter">
    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
     <property name="generateDdl" value="false" />
