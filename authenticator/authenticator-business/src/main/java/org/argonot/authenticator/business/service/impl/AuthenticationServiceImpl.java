@@ -64,7 +64,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User authenticateUserWithLockStrategy(String email, String password, String appUID) {
         User user = userRepository.findByEmail(email);
-        if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked() && user.getTries() < AUTHENTICATION_MAX_TRIES) {
+        if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked()) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
             return user;
         }
