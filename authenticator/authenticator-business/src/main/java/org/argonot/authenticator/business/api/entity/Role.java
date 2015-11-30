@@ -24,13 +24,13 @@ public class Role {
     /**
      * Max length for String ID
      */
-    private static final int STRING_ID_MAX_LENGTH = 3;
+    private static final int ROLE_ID_MAX_LENGTH = 3;
 
     /**
      * Role Unique Identifier
      */
     @Id
-    @Column(name = "RUID", unique = true, nullable = false, length=STRING_ID_MAX_LENGTH)
+    @Column(name = "RUID", unique = true, nullable = false, length=ROLE_ID_MAX_LENGTH)
     private String id;
 
     /**

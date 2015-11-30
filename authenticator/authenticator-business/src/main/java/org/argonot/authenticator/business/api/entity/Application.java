@@ -25,13 +25,13 @@ public class Application {
     /**
      * Max length for String ID
      */
-    private static final int STRING_ID_MAX_LENGTH = 3;
+    private static final int APP_ID_MAX_LENGTH = 3;
 
     /**
      * Application Unique Identifier
      */
     @Id
-    @Column(name = "AUID", unique = true, nullable = false, length=STRING_ID_MAX_LENGTH)
+    @Column(name = "AUID", unique = true, nullable = false, length=APP_ID_MAX_LENGTH)
     private String id;
 
     /**

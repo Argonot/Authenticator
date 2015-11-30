@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * <b>AdminController</b> operate for HTTP transactions from the BO
+ * @author Meidi
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -32,6 +37,11 @@ public class AdminController {
     @Autowired
     private RoleService roleService;
     
+    /**
+     * Administration home page<br/>
+     * Presents all the authorizations
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView authorizations() {
         ModelAndView page = new ModelAndView("Admin");
@@ -39,6 +49,10 @@ public class AdminController {
         return page;
     }
     
+    /**
+     * Presents all the applications in a tab
+     * @return
+     */
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
     public ModelAndView applications() {
         ModelAndView page = new ModelAndView("Applications");
@@ -46,6 +60,10 @@ public class AdminController {
         return page;
     }
     
+    /**
+     * Presents all the users in a tab
+     * @return
+     */
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ModelAndView users() {
         ModelAndView page = new ModelAndView("Users");
@@ -53,6 +71,10 @@ public class AdminController {
         return page;
     }
     
+    /**
+     * Presents all the roles in a tab
+     * @return
+     */
     @RequestMapping(value = "/roles", method = RequestMethod.GET)
     public ModelAndView roles() {
         ModelAndView page = new ModelAndView("Roles");
@@ -60,6 +82,10 @@ public class AdminController {
         return page;
     }
     
+    /**
+     * Close the user session
+     * @return
+     */
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logout (HttpServletRequest request, HttpServletResponse response) {
         ModelAndView page = new ModelAndView("Index");
