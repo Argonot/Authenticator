@@ -7,13 +7,13 @@
 <head>
 	<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 	<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-	<title>Admin :: Applications</title>
+	<title>Admin :: Roles</title>
 </head>
 <body>
 	<div id="admin-header" class="row">
 		<div id="admin-header-left-side" class="col-md-3"></div>
 		<div id="admin-header-container" class="col-md-6">
-			<jsp:include page="admin/Header.jsp" />
+			<jsp:include page="includes/Header.jsp" />
 		</div>
 		<div id="admin-header-right-side" class="col-md-3"></div>
 	</div>
@@ -33,7 +33,7 @@
 	<div id="admin-page" class="row">
 		<div id="admin-page-left-side" class="col-md-3"></div>
 		<div id="admin-page-container" class="col-md-6">
-			<jsp:include page="admin/RolesPanel.jsp" />
+			<jsp:include page="panels/RolesPanel.jsp" />
 		</div>
 		<div id="admin-page-right-side" class="col-md-3"></div>
 	</div>

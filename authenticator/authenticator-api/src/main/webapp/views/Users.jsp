@@ -13,7 +13,7 @@
 	<div id="admin-header" class="row">
 		<div id="admin-header-left-side" class="col-md-3"></div>
 		<div id="admin-header-container" class="col-md-6">
-			<jsp:include page="admin/Header.jsp" />
+			<jsp:include page="includes/Header.jsp" />
 		</div>
 		<div id="admin-header-right-side" class="col-md-3"></div>
 	</div>
@@ -33,7 +33,7 @@
 	<div id="admin-page" class="row">
 		<div id="admin-page-left-side" class="col-md-3"></div>
 		<div id="admin-page-container" class="col-md-6">
-			<jsp:include page="admin/UsersPanel.jsp" />
+			<jsp:include page="panels/UsersPanel.jsp" />
 		</div>
 		<div id="admin-page-right-side" class="col-md-3"></div>
 	</div>
