@@ -21,16 +21,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
     
     @Autowired
-    AuthorizationService authorizationService;
+    private AuthorizationService authorizationService;
     
     @Autowired
-    ApplicationService applicationService;
+    private ApplicationService applicationService;
     
     @Autowired
-    UserService userService;
+    private UserService userService;
     
     @Autowired
-    RoleService roleService;
+    private RoleService roleService;
     
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView authorizations() {

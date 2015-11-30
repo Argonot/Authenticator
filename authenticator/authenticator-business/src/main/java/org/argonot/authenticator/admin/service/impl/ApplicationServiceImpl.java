@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApplicationServiceImpl implements ApplicationService {
     
     @Autowired
-    ApplicationRepository applicationRepository;
+    private ApplicationRepository applicationRepository;
 
     /**
      * {@inheritDoc}

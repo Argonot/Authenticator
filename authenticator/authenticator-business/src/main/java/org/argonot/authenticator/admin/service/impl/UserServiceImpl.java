@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     /**
      * {@inheritDoc}
