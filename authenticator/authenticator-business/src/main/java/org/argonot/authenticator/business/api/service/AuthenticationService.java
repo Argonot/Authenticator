@@ -7,7 +7,7 @@ import org.argonot.authenticator.business.api.entity.User;
 
 
 /**
- * <b>AuthentificationService</b> provides common actions around the Users
+ * <b>AuthenticationService</b> provides common actions around the Users
  * @author Meidi
  *
  */

@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/applicationContext-dao-test.xml", "file:src/main/webapp/WEB-INF/spring-servlet.xml"})
+@ContextConfiguration(locations={"/applicationContext-dao-test.xml", "file:src/main/webapp/WEB-INF/spring-servlet.xml", "file:src/main/webapp/WEB-INF/securityContext.xml"})
 @WebAppConfiguration
 public abstract class AbstractControllerTest {
 

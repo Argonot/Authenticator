@@ -71,4 +71,12 @@ public class Authorization {
         this.app = app;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
 }
