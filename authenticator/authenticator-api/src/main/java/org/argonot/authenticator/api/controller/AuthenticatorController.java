@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * <b>AuthentificatorController</b> expose every RESTFUL methods that can be called relative to an authentification
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  *
  */
 @Controller
-@SessionAttributes({"userSession"})
 @RequestMapping("/authenticator")
 public class AuthenticatorController {
 
