@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class AuthenticatorServiceTest extends AbstractBusinessSpringContextTest {
+public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest {
 
     private static final String RIGHT_EMAIL = "meidi.airouche@gmail.com";
     private static final String EMAIL_USER_LOCKED = "test@gmail.com";
