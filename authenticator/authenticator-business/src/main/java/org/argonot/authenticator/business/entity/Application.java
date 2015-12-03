@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 /**
  * <b>Application</b> stand for the relevant informations about any Argonot application
  * @author Meidi
@@ -69,5 +68,4 @@ public class Application {
     public void setAuthorizations(Set<Authorization> authorizations) {
         this.authorizations = authorizations;
     }
-
 }

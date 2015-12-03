@@ -97,7 +97,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Application app = applicationRepository.findOne(appUID);
         if(app != null) {
             Authorization authorization = authorizationRepository.findByUserAndApp(user, app);
-            if(authorization != null && user.getPassword().equals(CipherUtils.encrypt(password)) && authorization.getApp().getId().equals(appUID)) {
+            if(authorization != null && user.getPassword().equals(CipherUtils.encrypt(password))) {
                 LOGGER.info("Found authorization for user " + user.getEmail() + " on application " + authorization.getApp().getName());
                 return true;
             }
