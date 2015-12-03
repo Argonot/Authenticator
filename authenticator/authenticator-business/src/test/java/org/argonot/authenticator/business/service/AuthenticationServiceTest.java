@@ -1,11 +1,8 @@
 package org.argonot.authenticator.business.service;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
-import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,16 +74,6 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
     }
 
     @Test
-    public void testUserIsLocked() {
-        assertTrue(authenticationService.isUserLocked(EMAIL_USER_LOCKED));
-    }
-
-    @Test
-    public void testUnknownUserIsLocked() {
-        assertFalse(authenticationService.isUserLocked(WRONG_EMAIL));
-    }
-
-    @Test
     public void testAuthenticateLockedUserWithLockStrategyFail() {
         assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP));
     }
@@ -96,6 +83,6 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
-        assertTrue(authenticationService.isUserLocked(EMAIL_USER_TO_LOCK));
+        assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP));
     }
 }

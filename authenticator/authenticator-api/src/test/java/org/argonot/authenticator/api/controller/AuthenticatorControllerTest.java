@@ -1,7 +1,5 @@
 package org.argonot.authenticator.api.controller;
 
-import static org.junit.Assert.assertTrue;
-
 import org.argonot.authenticator.api.utils.AbstractControllerTest;
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.junit.Before;
@@ -41,17 +39,5 @@ public class AuthenticatorControllerTest extends AbstractControllerTest {
     public void testSecureAuthenticateUser() throws Exception {
         this.request.setContent(jsonMapper.writeValueAsBytes(credentials));
         this.testJsonObjectRoute(SECURE_AUTHENTICATION_ROUTE, HTTP_POST_METHOD);
-    }
-    
-    @Test
-    public void testCheckUserAccountLock() throws Exception {
-        credentials.setEmail(LOCKED_USER_EMAIL);
-        this.request.setContent(jsonMapper.writeValueAsBytes(credentials));
-        request.setRequestURI(ADMIN_CHECK_ACCOUNT_ROUTE);
-        request.setMethod(HTTP_POST_METHOD);
-        request.setContentType(JSON_CONTENT_TYPE);
-        Object handler = handlerMapping.getHandler(request).getHandler();
-        handlerAdapter.handle(request, response, handler);
-        assertTrue("false".equals(response.getContentAsString()));
     }
 }

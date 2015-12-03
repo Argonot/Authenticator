@@ -74,19 +74,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Boolean isUserLocked(String email) {
-        User user = userRepository.findByEmail(email);
-        if(user != null) {
-            return user.isLocked(); 
-        }
-        LOGGER.warn("Impossible to check user lock. The user " + email + " doesn't exists.");
-        return false;
-    }
-
-    /**
      * Say if the User is authorized to use the given application
      * @param email : user entered email
      * @param password : user entered password
