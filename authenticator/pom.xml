@@ -39,9 +39,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://github.com/mairouche/Authentificator-WS.git</connection>
-		<developerConnection>scm:git:git@github.com:mairouche/Authentificator-WS.git</developerConnection>
-		<url>https://github.com/mairouche/Authentificator-WS</url>
+		<connection>scm:git:https://github.com/mairouche/Authenticator.git</connection>
+		<developerConnection>scm:git:git@github.com:mairouche/Authenticator.git</developerConnection>
+		<url>https://github.com/mairouche/Authenticator</url>
 		<tag>HEAD</tag>
 	</scm>
 
