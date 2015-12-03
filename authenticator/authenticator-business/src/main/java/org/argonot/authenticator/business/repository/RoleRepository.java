@@ -1,9 +1,9 @@
 /* This software is the exclusive property of Argonot.
  * © Argonot.fr 2015 - All rights reserved */
 
-package org.argonot.authenticator.business.api.repository;
+package org.argonot.authenticator.business.repository;
 
-import org.argonot.authenticator.business.api.entity.Role;
+import org.argonot.authenticator.business.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

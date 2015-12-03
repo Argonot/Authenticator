@@ -1,11 +1,11 @@
 /* This software is the exclusive property of Argonot.
  * © Argonot.fr 2015 - All rights reserved */
 
-package org.argonot.authenticator.admin.service;
+package org.argonot.authenticator.business.service;
 
 import java.util.List;
 
-import org.argonot.authenticator.business.api.entity.Authorization;
+import org.argonot.authenticator.business.entity.Authorization;
 
 /**
  * <b>AuthorizationService</b> provides authorizations logic

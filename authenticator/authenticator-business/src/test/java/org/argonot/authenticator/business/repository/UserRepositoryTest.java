@@ -1,8 +1,8 @@
-package org.argonot.authenticator.business.api.repository;
+package org.argonot.authenticator.business.repository;
 
 import static org.junit.Assert.*;
 
-import org.argonot.authenticator.business.api.repository.UserRepository;
+import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

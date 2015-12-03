@@ -4,8 +4,8 @@
 package org.argonot.authenticator.api.controller;
 
 import org.argonot.authenticator.api.vo.CredentialsVO;
-import org.argonot.authenticator.business.api.entity.User;
-import org.argonot.authenticator.business.api.service.AuthenticationService;
+import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.service.AuthenticationService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

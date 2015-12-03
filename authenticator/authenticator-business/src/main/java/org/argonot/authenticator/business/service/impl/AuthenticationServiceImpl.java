@@ -1,16 +1,16 @@
 /* This software is the exclusive property of Argonot.
  * © Argonot.fr 2015 - All rights reserved */
 
-package org.argonot.authenticator.business.api.service.impl;
+package org.argonot.authenticator.business.service.impl;
 
 import org.apache.log4j.Logger;
-import org.argonot.authenticator.business.api.entity.Application;
-import org.argonot.authenticator.business.api.entity.Authorization;
-import org.argonot.authenticator.business.api.entity.User;
-import org.argonot.authenticator.business.api.repository.ApplicationRepository;
-import org.argonot.authenticator.business.api.repository.AuthorizationRepository;
-import org.argonot.authenticator.business.api.repository.UserRepository;
-import org.argonot.authenticator.business.api.service.AuthenticationService;
+import org.argonot.authenticator.business.entity.Application;
+import org.argonot.authenticator.business.entity.Authorization;
+import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.repository.ApplicationRepository;
+import org.argonot.authenticator.business.repository.AuthorizationRepository;
+import org.argonot.authenticator.business.repository.UserRepository;
+import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.commons.utils.CipherUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

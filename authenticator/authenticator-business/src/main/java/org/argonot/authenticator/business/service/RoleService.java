@@ -1,8 +1,8 @@
-package org.argonot.authenticator.admin.service;
+package org.argonot.authenticator.business.service;
 
 import java.util.List;
 
-import org.argonot.authenticator.business.api.entity.Role;
+import org.argonot.authenticator.business.entity.Role;
 
 /**
  * <b>RoleService</b> provides roles logic

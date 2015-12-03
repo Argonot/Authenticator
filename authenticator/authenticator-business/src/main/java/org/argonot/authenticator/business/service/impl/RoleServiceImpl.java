@@ -1,10 +1,10 @@
-package org.argonot.authenticator.admin.service.impl;
+package org.argonot.authenticator.business.service.impl;
 
 import java.util.List;
 
-import org.argonot.authenticator.admin.service.RoleService;
-import org.argonot.authenticator.business.api.entity.Role;
-import org.argonot.authenticator.business.api.repository.RoleRepository;
+import org.argonot.authenticator.business.entity.Role;
+import org.argonot.authenticator.business.repository.RoleRepository;
+import org.argonot.authenticator.business.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

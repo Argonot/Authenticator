@@ -1,11 +1,11 @@
-package org.argonot.authenticator.business.api.service;
+package org.argonot.authenticator.business.service;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import org.argonot.authenticator.business.api.service.AuthenticationService;
+import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.Before;
 import org.junit.Test;

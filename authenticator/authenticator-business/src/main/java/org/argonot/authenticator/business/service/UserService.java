@@ -1,8 +1,8 @@
-package org.argonot.authenticator.admin.service;
+package org.argonot.authenticator.business.service;
 
 import java.util.List;
 
-import org.argonot.authenticator.business.api.entity.User;
+import org.argonot.authenticator.business.entity.User;
 
 /**
  * <b>UserService</b> provides user logic
