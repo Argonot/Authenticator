@@ -3,7 +3,6 @@
 
 package org.argonot.authenticator.business.entity;
 
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,10 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <b>User</b> stand for the relevant informations about an Argonot user / member
@@ -47,14 +42,6 @@ public class User {
      */
     @Column(nullable=false)
     private String surname;
-
-    /**
-     * User birth date
-     */
-    @Column(nullable=false)
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date birth;
 
     /**
      * User Argonot email
@@ -108,14 +95,6 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-
-    public void setBirth(Date birth) {
-        this.birth = birth;
     }
 
     public String getEmail() {

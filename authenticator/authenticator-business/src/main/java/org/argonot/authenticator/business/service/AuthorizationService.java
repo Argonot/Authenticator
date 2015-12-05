@@ -19,4 +19,41 @@ public interface AuthorizationService {
      * @return
      */
     List<Authorization> listAuthorizations();
+
+    /**
+     * Finds an authorization by unique id
+     * 
+     * @param idAuth
+     *            : authorization unique id
+     * @return
+     */
+    Authorization find(long idAuth);
+
+    /**
+     * Update an authorization
+     * 
+     * @param auth
+     *            : the authorization to update
+     * @param idAuth
+     *            : the provided authorization information
+     * @return
+     */
+    Authorization update(Authorization auth, long idAuth);
+
+    /**
+     * Create an authorization
+     * 
+     * @param auth
+     *            : authorization to create
+     * @return
+     */
+    Authorization create(Authorization auth);
+
+    /**
+     * Permanently remove an authorization
+     * 
+     * @param idAuth
+     *            : authorization to remove unique id
+     */
+    void removeAuthorization(long idAuth);
 }
