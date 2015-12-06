@@ -16,4 +16,38 @@ public interface RoleService {
      * @return
      */
     List<Role> listRoles();
+
+    /**
+     * Find a role by id
+     * 
+     * @param ruid
+     *            : role unique identifier
+     * @return a Role
+     */
+    Role find(String ruid);
+
+    /**
+     * Update a provided role
+     * 
+     * @param role
+     *            : provided role
+     * @return an updated role
+     */
+    Role update(Role role);
+
+    /**
+     * Create a provided role
+     * 
+     * @param role
+     *            : provided role
+     */
+    void create(Role role);
+
+    /**
+     * Delete a role
+     * 
+     * @param ruid
+     *            : role unique identifier
+     */
+    void removeRole(String ruid);
 }

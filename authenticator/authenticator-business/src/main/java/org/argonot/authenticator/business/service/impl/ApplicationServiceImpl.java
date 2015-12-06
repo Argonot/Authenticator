@@ -29,4 +29,39 @@ public class ApplicationServiceImpl implements ApplicationService {
         return applicationRepository.findAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Application find(String auid) {
+        return applicationRepository.findOne(auid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Application update(Application app) {
+        return applicationRepository.save(app);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Application create(Application app) {
+        if (applicationRepository.findOne(app.getId()) == null) {
+            applicationRepository.save(app);
+        }
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeApplication(String auid) {
+        applicationRepository.delete(applicationRepository.findOne(auid));
+    }
+
 }

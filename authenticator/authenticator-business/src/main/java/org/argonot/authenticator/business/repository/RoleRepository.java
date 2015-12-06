@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Meidi
  *
  */
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Role, String> {
 
 }
