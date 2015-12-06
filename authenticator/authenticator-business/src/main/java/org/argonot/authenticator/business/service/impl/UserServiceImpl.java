@@ -76,7 +76,9 @@ public class UserServiceImpl implements UserService {
             user.setEmail(userProvided.getEmail());
             user.setName(userProvided.getName());
             user.setSurname(userProvided.getSurname());
-            user.setPassword(CipherUtils.encrypt(userProvided.getPassword()));
+            if (userProvided.getPassword() != null) {
+                user.setPassword(CipherUtils.encrypt(userProvided.getPassword()));
+            }
             userRepository.save(user);
             return user;
         }
