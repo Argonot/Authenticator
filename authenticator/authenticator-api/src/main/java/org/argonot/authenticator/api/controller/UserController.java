@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
     
     @Autowired
-    Mapper mapper;
+    private Mapper mapper;
     
     @Autowired
-    UserService userService;
+    private UserService userService;
     
     /**
      * Route for subscribing User to an app
