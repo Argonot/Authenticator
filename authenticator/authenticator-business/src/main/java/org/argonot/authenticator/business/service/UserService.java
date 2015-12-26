@@ -22,8 +22,9 @@ public interface UserService {
      * 
      * @param idUser
      *            : user id
+     * @return true if removed / false otherwise
      */
-    void removeUser(long idUser);
+    boolean removeUser(long idUser);
 
     /**
      * Unlock a User
@@ -60,4 +61,14 @@ public interface UserService {
      * @return
      */
     User create(User user);
+
+    /**
+     * Create a user if needed and authorized on the app
+     * 
+     * @param user : user to create and / or authorize
+     * @param auid : id of app registering the user
+     * @param ruid : user role
+     * @return the user
+     */
+    User subscribe(User map, String auid, String ruid);
 }

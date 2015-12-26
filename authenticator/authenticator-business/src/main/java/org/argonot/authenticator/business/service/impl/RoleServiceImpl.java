@@ -49,18 +49,23 @@ public class RoleServiceImpl implements RoleService {
      * {@inheritDoc}
      */
     @Override
-    public void create(Role role) {
+    public Role create(Role role) {
         if (roleRepository.findOne(role.getId()) == null) {
-            roleRepository.save(role);
+            return roleRepository.save(role);
         }
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeRole(String ruid) {
-        roleRepository.delete(roleRepository.findOne(ruid));
+    public boolean removeRole(String ruid) {
+        try {
+            roleRepository.delete(roleRepository.findOne(ruid));
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
-
 }

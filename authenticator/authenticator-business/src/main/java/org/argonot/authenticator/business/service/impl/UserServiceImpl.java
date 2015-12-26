@@ -1,10 +1,12 @@
 package org.argonot.authenticator.business.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.argonot.authenticator.business.entity.Authorization;
 import org.argonot.authenticator.business.entity.User;
-import org.argonot.authenticator.business.repository.AuthorizationRepository;
+import org.argonot.authenticator.business.repository.ApplicationRepository;
+import org.argonot.authenticator.business.repository.RoleRepository;
 import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.service.UserService;
 import org.argonot.commons.utils.CipherUtils;
@@ -23,9 +25,12 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private UserRepository userRepository;
-
+    
     @Autowired
-    private AuthorizationRepository authorizationRepository;
+    private RoleRepository roleRepository;
+    
+    @Autowired
+    private ApplicationRepository appRepository;
 
     /**
      * {@inheritDoc}
@@ -39,12 +44,14 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public void removeUser(long idUser) {
-        User user = userRepository.findOne(idUser);
-        for (Authorization authorization : user.getAuthorizations()) {
-            authorizationRepository.delete(authorization);
+    public boolean removeUser(long idUser) {
+        try {
+            userRepository.delete(userRepository.findOne(idUser));
+            return true;
+        } catch(Exception e) {
+            return false;
         }
-        userRepository.delete(user);
+        
     }
 
     /**
@@ -94,6 +101,20 @@ public class UserServiceImpl implements UserService {
         user.setLocked(false);
         user.setPassword(CipherUtils.encrypt(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User subscribe(User subscribingUser, String auid, String ruid) {
+        User user = userRepository.findByEmail(subscribingUser.getEmail());
+        if(user == null) {
+            user = this.create(subscribingUser);
+            user.setAuthorizations(new HashSet<Authorization>());
+        }
+        user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
+        return user;
     }
 
 }

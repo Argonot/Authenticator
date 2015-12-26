@@ -40,14 +40,16 @@ public interface RoleService {
      * 
      * @param role
      *            : provided role
+     * @return the created role
      */
-    void create(Role role);
+    Role create(Role role);
 
     /**
      * Delete a role
      * 
      * @param ruid
      *            : role unique identifier
+     * @return true if removed / false if not
      */
-    void removeRole(String ruid);
+    boolean removeRole(String ruid);
 }

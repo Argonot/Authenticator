@@ -9,11 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceTest extends AbstractBusinessSpringContextTest {
 
+    private static final long USER_TO_REMOVE_ID = 5L;
+    
     @Autowired
     UserService userService;
+    
+    @Autowired
+    AuthorizationService authService;
 
     @Test
     public void testListUsers() {
         assertTrue(CollectionUtils.isNotEmpty(userService.listUsers()));
     }
+
+    @Test
+    public void testRemovedUserDoesntExistsAnymore() {
+        assertTrue(userService.removeUser(USER_TO_REMOVE_ID));
+    }
+    
 }

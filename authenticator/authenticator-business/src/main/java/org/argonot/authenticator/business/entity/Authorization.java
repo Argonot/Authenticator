@@ -46,6 +46,24 @@ public class Authorization {
     @ManyToOne
     @JoinColumn(name="RUID")
     private Role role;
+    
+    /**
+     * Default constructor
+     */
+    public Authorization() {
+    }
+
+    /**
+     * Complete constructor
+     * @param user : user authorized
+     * @param app : application concerned
+     * @param role : user permissions
+     */
+    public Authorization(User user, Application app, Role role) {
+        this.user = user;
+        this.app = app;
+        this.role = role;
+    }
 
     public long getId() {
         return id;

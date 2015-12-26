@@ -85,4 +85,5 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
         assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP));
     }
+  
 }

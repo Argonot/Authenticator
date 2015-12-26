@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * <b>User</b> stand for the relevant informations about an Argonot user / member
  * @author Meidi
@@ -70,7 +72,8 @@ public class User {
     /**
      * Users authorizations
      */
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+    @JsonIgnore
     private Set<Authorization> authorizations;
 
     public long getId() {
