@@ -4,6 +4,7 @@ INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserT
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserUnauthorized', 'UserUnauthorized', 'userunauthorized@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserToRemoveName', 'UserToRemoveSurname', 'usertoremove@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UpdateUserName', 'UpdateUserSurname', 'updateuser@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
+INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('lockedUser', 'lockedUser', 'lockedUser@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', true, 3);
 INSERT INTO applications(AUID, name) VALUES('TKP', 'Trello KPI');
 INSERT INTO applications(AUID, name) VALUES('FRG', 'Forge Argonot');
 INSERT INTO applications(AUID, name) VALUES('UPD', 'Update');

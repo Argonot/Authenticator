@@ -76,6 +76,7 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
         assertFalse(userService.removeUser(UNKNOWN_USER_ID));
     }
    
+    // Test de merde
     @Test
     public void testUnlockUser() {
         userService.unlockUser(LOCKED_USER_ID);
@@ -113,5 +114,5 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
     public void testUpdateUnexistingUser() {
         assertNull(userService.update(updateUser, UNKNOWN_USER_ID));
     }
-    
+
 }

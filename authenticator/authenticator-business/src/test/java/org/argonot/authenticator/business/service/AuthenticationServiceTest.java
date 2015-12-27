@@ -4,14 +4,13 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest {
 
     private static final String RIGHT_EMAIL = "meidi.airouche@gmail.com";
-    private static final String EMAIL_USER_LOCKED = "test@gmail.com";
+    private static final String EMAIL_USER_LOCKED = "lockedUser@gmail.com";
     private static final String EMAIL_USER_UNAUTHORIZED = "userunauthorized@gmail.com";
     private static final String EMAIL_USER_TO_LOCK = "willbelocked@gmail.com";
     private static final String RIGHT_PASSWORD = "Test1.";
@@ -22,11 +21,6 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
 
     @Autowired
     AuthenticationService authenticationService;
-
-    @Before
-    public void setUpTests() {
-
-    }
 
     @Test
     public void testAuthenticateUserSuccess() {
