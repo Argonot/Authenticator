@@ -43,14 +43,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Override
     public Authorization update(Authorization auth, long idAuth) {
         Authorization authorization = authorizationRepository.findOne(idAuth);
-        if (authorization != null) {
-            authorization.setApp(auth.getApp());
-            authorization.setRole(auth.getRole());
-            authorization.setUser(auth.getUser());
-            authorizationRepository.save(authorization);
-            return authorization;
-        }
-        return null;
+        authorization.setApp(auth.getApp());
+        authorization.setRole(auth.getRole());
+        authorization.setUser(auth.getUser());
+        authorizationRepository.save(authorization);
+        return authorization;
     }
 
     /**

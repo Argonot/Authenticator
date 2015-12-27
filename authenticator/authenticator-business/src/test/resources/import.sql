@@ -13,3 +13,5 @@ INSERT INTO authorizations(id_user, AUID, RUID) VALUES(2, 'FRG', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(2, 'TKP', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(3, 'FRG', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'FRG', 'USR');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'TKP', 'USR');
+INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'FRG', 'ADM');

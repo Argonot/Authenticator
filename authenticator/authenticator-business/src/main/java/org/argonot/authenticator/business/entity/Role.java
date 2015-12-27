@@ -45,6 +45,22 @@ public class Role {
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
     private Set<Authorization> authorizations;
 
+    /**
+     * Default constructor
+     */
+    public Role() {
+    }
+    
+    /**
+     * Explicit constructor
+     * @param ruid
+     * @param name
+     */
+    public Role(String ruid, String name) {
+        this.id = ruid;
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
