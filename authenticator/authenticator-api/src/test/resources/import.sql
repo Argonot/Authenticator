@@ -3,8 +3,11 @@ INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('User'
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserToLock', 'WillBeLocked', 'willbelocked@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserUnauthorized', 'UserUnauthorized', 'userunauthorized@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserToRemoveName', 'UserToRemoveSurname', 'usertoremove@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
+INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UpdateUserName', 'UpdateUserSurname', 'updateuser@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO applications(AUID, name) VALUES('TKP', 'Trello KPI');
 INSERT INTO applications(AUID, name) VALUES('FRG', 'Forge Argonot');
+INSERT INTO applications(AUID, name) VALUES('UPD', 'Update');
+INSERT INTO applications(AUID, name) VALUES('RMV', 'Remove');
 INSERT INTO roles(RUID, name) VALUES ('ADM', 'ADMIN');
 INSERT INTO roles(RUID, name) VALUES ('USR', 'USER');
 INSERT INTO roles(RUID, name) VALUES ('RMV', 'REMOVE');

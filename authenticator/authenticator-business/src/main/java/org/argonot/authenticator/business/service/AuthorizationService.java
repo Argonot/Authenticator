@@ -6,6 +6,7 @@ package org.argonot.authenticator.business.service;
 import java.util.List;
 
 import org.argonot.authenticator.business.entity.Authorization;
+import org.argonot.authenticator.business.entity.User;
 
 /**
  * <b>AuthorizationService</b> provides authorizations logic
@@ -56,4 +57,14 @@ public interface AuthorizationService {
      *            : authorization to remove unique id
      */
     void removeAuthorization(long idAuth);
+
+    /**
+     * Determine if an authorization is already existing
+     * @param user : user requesting new authorization via subscription
+     * @param auid : application concerned id
+     * @param ruid : user role id
+     * @return
+     */
+    boolean existsAuthorization(User user, String auid, String ruid);
+    
 }

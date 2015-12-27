@@ -5,6 +5,7 @@ package org.argonot.authenticator.business.repository;
 
 import org.argonot.authenticator.business.entity.Application;
 import org.argonot.authenticator.business.entity.Authorization;
+import org.argonot.authenticator.business.entity.Role;
 import org.argonot.authenticator.business.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -22,4 +23,13 @@ public interface AuthorizationRepository extends JpaRepository<Authorization, Lo
      * @return 
      */
     Authorization findByUserAndApp(User user, Application app);
+
+    /**
+     * Find an authorization for a user on an app with a certain role
+     * @param user : user authorized
+     * @param app : application concerned
+     * @param role : role granted to user
+     * @return an authorization
+     */
+    Authorization findByUserAndAppAndRole(User user, Application app, Role role);
 }

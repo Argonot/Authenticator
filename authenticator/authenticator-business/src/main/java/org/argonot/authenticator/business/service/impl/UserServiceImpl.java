@@ -8,6 +8,7 @@ import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.repository.ApplicationRepository;
 import org.argonot.authenticator.business.repository.RoleRepository;
 import org.argonot.authenticator.business.repository.UserRepository;
+import org.argonot.authenticator.business.service.AuthorizationService;
 import org.argonot.authenticator.business.service.UserService;
 import org.argonot.commons.utils.CipherUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("UserService")
 @Transactional
 public class UserServiceImpl implements UserService {
+    
+    @Autowired
+    private AuthorizationService authorizationService;
     
     @Autowired
     private UserRepository userRepository;
@@ -112,8 +116,12 @@ public class UserServiceImpl implements UserService {
         if(user == null) {
             user = this.create(subscribingUser);
             user.setAuthorizations(new HashSet<Authorization>());
+            user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
+        } else if(user != null && !authorizationService.existsAuthorization(user, auid, ruid)) {
+            user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
+        } else {
+            return null;
         }
-        user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
         return user;
     }
 

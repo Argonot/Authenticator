@@ -70,5 +70,5 @@ public interface UserService {
      * @param ruid : user role
      * @return the user
      */
-    User subscribe(User map, String auid, String ruid);
+    User subscribe(User user, String auid, String ruid);
 }

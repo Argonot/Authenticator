@@ -51,7 +51,7 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public Application create(Application app) {
         if (applicationRepository.findOne(app.getId()) == null) {
-            applicationRepository.save(app);
+            return applicationRepository.save(app);
         }
         return null;
     }
