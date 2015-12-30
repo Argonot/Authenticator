@@ -116,9 +116,9 @@ public class UserServiceImpl implements UserService {
         if(user == null) {
             user = this.create(subscribingUser);
             user.setAuthorizations(new HashSet<Authorization>());
-            user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
+            authorizationService.create(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
         } else if(user != null && !authorizationService.existsAuthorization(user, auid, ruid)) {
-            user.getAuthorizations().add(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
+            authorizationService.create(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
         } else {
             return null;
         }
