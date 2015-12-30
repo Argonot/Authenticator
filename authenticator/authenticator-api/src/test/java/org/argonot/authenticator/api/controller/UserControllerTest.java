@@ -36,4 +36,5 @@ public class UserControllerTest extends AbstractControllerTest {
         this.request.setContent(jsonMapper.writeValueAsBytes(subscriberCredentials));
         this.testJsonObjectRoute(SUBSCRIBE_ROUTE, HTTP_POST_METHOD);
     }
+
 }

@@ -9,6 +9,12 @@ package org.argonot.authenticator.api.vo;
  *
  */
 public class CredentialsVO {
+    
+    /**
+     * User id
+     */
+    private long idUser;
+    
     /**
      * User entered email
      */
@@ -121,6 +127,20 @@ public class CredentialsVO {
      */
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    /**
+     * @return the idUser
+     */
+    public long getIdUser() {
+        return idUser;
+    }
+
+    /**
+     * @param idUser the idUser to set
+     */
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
     }
 
 }
