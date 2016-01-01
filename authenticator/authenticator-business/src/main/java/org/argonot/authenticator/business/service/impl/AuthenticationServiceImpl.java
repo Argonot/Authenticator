@@ -49,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     @Override
     public User authenticateUser(String email, String password, String appUID) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID)) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
             return user;
@@ -63,7 +63,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     @Override
     public User authenticateUserWithLockStrategy(String email, String password, String appUID) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked()) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
             return user;

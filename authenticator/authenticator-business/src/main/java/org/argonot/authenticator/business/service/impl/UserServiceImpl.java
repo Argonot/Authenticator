@@ -112,7 +112,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User subscribe(User subscribingUser, String auid, String ruid) {
-        User user = userRepository.findByEmail(subscribingUser.getEmail());
+        User user = userRepository.findByEmailIgnoreCase(subscribingUser.getEmail());
         if(user == null) {
             user = this.create(subscribingUser);
             user.setAuthorizations(new HashSet<Authorization>());

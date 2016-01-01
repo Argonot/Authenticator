@@ -17,7 +17,7 @@ public class UserRepositoryTest extends AbstractBusinessSpringContextTest {
 
     @Test
     public void testFindUserByEmail() {
-        assertTrue(userRepository.findByEmail(USER_MAIL).getId() == USER_ID);
+        assertTrue(userRepository.findByEmailIgnoreCase(USER_MAIL).getId() == USER_ID);
     }
 
 }
