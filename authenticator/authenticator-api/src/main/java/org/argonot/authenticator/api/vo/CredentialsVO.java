@@ -46,6 +46,11 @@ public class CredentialsVO {
     private String surname;
 
     /**
+     * User's avatar
+     */
+    private String avatar;
+
+    /**
      * @return the email
      */
     public String getEmail() {
@@ -141,6 +146,14 @@ public class CredentialsVO {
      */
     public void setIdUser(long idUser) {
         this.idUser = idUser;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 }
