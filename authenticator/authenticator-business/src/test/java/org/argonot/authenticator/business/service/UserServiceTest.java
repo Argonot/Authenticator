@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceTest extends AbstractBusinessSpringContextTest {
 
-    private static final String EXPECTED_USER_AVATAR_URL = "http://localhost:8080/authenticator-api/resources/anonymous_200.gif";
+    private static final String EXPECTED_USER_AVATAR_URL = "http://localhost:8080/authenticator-api/resources/img/anonymous_200.gif";
     private static final String LOCAL_AUTHENTICATOR_URL = "http://localhost:8080/authenticator-api";
     private static final String NEW_USER_EMAIL = "newUser@gmail.com";
     private static final String NEW_USER_NAME = "newUserName";
