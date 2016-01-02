@@ -3,6 +3,9 @@
 
 package org.argonot.authenticator.api.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.argonot.authenticator.api.utils.AbstractAuthenticatorController;
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.service.UserService;
@@ -22,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/users")
-public class UserController {
+public class UserController extends AbstractAuthenticatorController {
     
     @Autowired
     private Mapper mapper;
@@ -37,8 +40,9 @@ public class UserController {
      */
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
-    public User subscribeUser(@RequestBody CredentialsVO credentials) {
-        return userService.subscribe(mapper.map(credentials, User.class), credentials.getAuid(), credentials.getRuid());
+    public User subscribeUser(@RequestBody CredentialsVO credentials, HttpServletRequest request) {
+        return userService.subscribe(mapper.map(credentials, User.class), credentials.getAuid(), credentials.getRuid(),
+                this.getRootUrl(request));
     }
     
     /**

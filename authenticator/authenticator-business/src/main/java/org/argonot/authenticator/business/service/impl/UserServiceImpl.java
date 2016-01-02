@@ -24,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService {
     
+    private static final String ANONYMOUS_AVATAR_RESOURCE_PATH = "/resources/img/anonymous_200.gif";
+
     @Autowired
     private AuthorizationService authorizationService;
     
@@ -111,9 +113,10 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User subscribe(User subscribingUser, String auid, String ruid) {
+    public User subscribe(User subscribingUser, String auid, String ruid, String contextPath) {
         User user = userRepository.findByEmailIgnoreCase(subscribingUser.getEmail());
         if(user == null) {
+            subscribingUser.setAvatar(contextPath + ANONYMOUS_AVATAR_RESOURCE_PATH);
             user = this.create(subscribingUser);
             user.setAuthorizations(new HashSet<Authorization>());
             authorizationService.create(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));

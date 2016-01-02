@@ -58,6 +58,12 @@ public class User {
     private String password;
     
     /**
+     * User avatar
+     */
+    @Column(nullable = true)
+    private String avatar;
+
+    /**
      * Authentication tries
      */
     @Column
@@ -138,6 +144,14 @@ public class User {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
     
 }

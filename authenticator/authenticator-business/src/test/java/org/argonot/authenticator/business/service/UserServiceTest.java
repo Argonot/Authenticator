@@ -15,10 +15,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceTest extends AbstractBusinessSpringContextTest {
 
+    private static final String EXPECTED_USER_AVATAR_URL = "http://localhost:8080/authenticator-api/resources/anonymous_200.gif";
+    private static final String LOCAL_AUTHENTICATOR_URL = "http://localhost:8080/authenticator-api";
     private static final String NEW_USER_EMAIL = "newUser@gmail.com";
     private static final String NEW_USER_NAME = "newUserName";
+    private static final String NEW_USER_SURNAME = "newUserSurname";
     private static final String SUBSCRIBING_USER_EMAIL = "subscribingUser@gmail.com";
     private static final String SUBSCRIBING_USER_NAME = "subscribingUserName";
+    private static final String SUBSCRIBING_USER_SURNAME = "subscribingUserSurname";
+    private static final String SUBSCRIBING_AVATAR_USER_EMAIL = "subscribingUser@gmail.com";
+    private static final String SUBSCRIBING_AVATAR_USER_NAME = "subscribingUserName";
+    private static final String SUBSCRIBING_AVATAR_USER_SURNAME = "subscribingUserSurname";
     private static final String UPDATE_USER_EMAIL = "updateuser@gmail.com";
     private static final String UPDATE_USER_NAME = "UpdateUserName";
     private static final String USER_PASSWORD = "Test1.";
@@ -35,6 +42,7 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
     
     private static final User newUser = new User();
     private static final User subscribingUser = new User();
+    private static final User subscribingUserForAvatar = new User();
     private static final User updateUser = new User();
     
     @Autowired
@@ -47,14 +55,19 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
     public void setUpTests() {
         newUser.setEmail(NEW_USER_EMAIL);
         newUser.setName(NEW_USER_NAME);
-        newUser.setSurname(NEW_USER_NAME);
+        newUser.setSurname(NEW_USER_SURNAME);
         newUser.setPassword(USER_PASSWORD);
         
         subscribingUser.setEmail(SUBSCRIBING_USER_EMAIL);
         subscribingUser.setName(SUBSCRIBING_USER_NAME);
-        subscribingUser.setSurname(SUBSCRIBING_USER_NAME);
+        subscribingUser.setSurname(SUBSCRIBING_USER_SURNAME);
         subscribingUser.setPassword(USER_PASSWORD);
         
+        subscribingUserForAvatar.setEmail(SUBSCRIBING_AVATAR_USER_EMAIL);
+        subscribingUserForAvatar.setName(SUBSCRIBING_AVATAR_USER_NAME);
+        subscribingUserForAvatar.setSurname(SUBSCRIBING_AVATAR_USER_SURNAME);
+        subscribingUserForAvatar.setPassword(USER_PASSWORD);
+
         updateUser.setEmail(UPDATE_USER_EMAIL);
         updateUser.setName(UPDATE_USER_NAME);
         updateUser.setSurname(UPDATE_USER_NEW_SURNAME);
@@ -89,19 +102,21 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
 
     @Test
     public void testSubscribeUser() {
-        assertNotNull(userService.subscribe(subscribingUser, FORGE_APP_AUID, USER_ROLE_RUID));
+        assertNotNull(userService.subscribe(subscribingUser, FORGE_APP_AUID, USER_ROLE_RUID,
+                LOCAL_AUTHENTICATOR_URL));
     }
 
     @Test
     public void testSubscribeUserAlreadyExistToNewApp() {
         subscribingUser.setEmail(EXISTING_USER_EMAIL);
-        assertNotNull(userService.subscribe(subscribingUser, APP_AUID_WITH_NO_AUTH_FOR_USER, USER_ROLE_RUID));
+        assertNotNull(userService.subscribe(subscribingUser, APP_AUID_WITH_NO_AUTH_FOR_USER, USER_ROLE_RUID,
+                LOCAL_AUTHENTICATOR_URL));
     }
 
     @Test
     public void testSubscribeUserAlreadyExistsWithAuthorization() {
         subscribingUser.setEmail(EXISTING_USER_EMAIL);
-        assertNull(userService.subscribe(subscribingUser, FORGE_APP_AUID, ADMIN_ROLE_RUID));
+        assertNull(userService.subscribe(subscribingUser, FORGE_APP_AUID, ADMIN_ROLE_RUID, LOCAL_AUTHENTICATOR_URL));
     }
 
     @Test
@@ -112,6 +127,13 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
     @Test
     public void testUpdateUnexistingUser() {
         assertNull(userService.update(updateUser, UNKNOWN_USER_ID));
+    }
+
+    @Test
+    public void testUserAvatarUrlStructure() {
+        userService.subscribe(subscribingUserForAvatar, FORGE_APP_AUID, ADMIN_ROLE_RUID, LOCAL_AUTHENTICATOR_URL);
+        assertEquals(EXPECTED_USER_AVATAR_URL,
+                subscribingUserForAvatar.getAvatar());
     }
 
 }

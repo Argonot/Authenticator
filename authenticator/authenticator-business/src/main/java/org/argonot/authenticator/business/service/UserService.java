@@ -65,10 +65,15 @@ public interface UserService {
     /**
      * Create a user if needed and authorized on the app
      * 
-     * @param user : user to create and / or authorize
-     * @param auid : id of app registering the user
-     * @param ruid : user role
+     * @param user
+     *            : user to create and / or authorize
+     * @param auid
+     *            : id of app registering the user
+     * @param ruid
+     *            : user role
+     * @param contextPath
+     *            : used to build default user avatar URL
      * @return the user
      */
-    User subscribe(User user, String auid, String ruid);
+    User subscribe(User user, String auid, String ruid, String contextPath);
 }

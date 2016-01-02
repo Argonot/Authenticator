@@ -65,6 +65,7 @@ public abstract class AbstractControllerTest {
         Object handler = handlerMapping.getHandler(request).getHandler();
         handlerAdapter.handle(request, response, handler);
         JSONArray jsonArray = (JSONArray) new JSONParser().parse(response.getContentAsString());
+        System.out.println(jsonArray);
         assertFalse(jsonArray.isEmpty());
     }
     
@@ -74,7 +75,8 @@ public abstract class AbstractControllerTest {
         request.setContentType(JSON_CONTENT_TYPE);
         Object handler = handlerMapping.getHandler(request).getHandler();
         handlerAdapter.handle(request, response, handler);
-        JSONObject jsonArray = (JSONObject) new JSONParser().parse(response.getContentAsString());
-        assertFalse(jsonArray.isEmpty());
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(response.getContentAsString());
+        System.out.println(jsonObject);
+        assertFalse(jsonObject.isEmpty());
     }
 }
