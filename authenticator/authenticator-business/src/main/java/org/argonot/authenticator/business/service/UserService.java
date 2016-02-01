@@ -2,6 +2,7 @@ package org.argonot.authenticator.business.service;
 
 import java.util.List;
 
+import org.argonot.authenticator.business.dto.UserDTO;
 import org.argonot.authenticator.business.entity.User;
 
 /**
@@ -52,7 +53,7 @@ public interface UserService {
      * 
      * @return
      */
-    User update(User user, long idUser);
+    UserDTO update(User user, long idUser);
 
     /**
      * Create user
@@ -75,5 +76,5 @@ public interface UserService {
      *            : used to build default user avatar URL
      * @return the user
      */
-    User subscribe(User user, String auid, String ruid, String contextPath);
+    UserDTO subscribe(User user, String auid, String ruid, String contextPath);
 }

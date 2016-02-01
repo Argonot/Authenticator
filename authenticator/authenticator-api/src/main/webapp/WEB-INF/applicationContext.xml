@@ -58,6 +58,7 @@
 		<property name="mappingFiles">
 			<list>
 				<value>dozer/json-mapping.xml</value>
+				<value>dozer/backend-mapping.xml</value>
 			</list>
 		</property>
 	</bean>

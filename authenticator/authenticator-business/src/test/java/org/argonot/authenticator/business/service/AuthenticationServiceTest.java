@@ -1,7 +1,7 @@
 package org.argonot.authenticator.business.service;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.argonot.authenticator.business.util.AbstractBusinessSpringContextTest;
 import org.junit.Test;
@@ -29,22 +29,23 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
 
     @Test
     public void testAuthenticateUserFailureForEmail() {
-        assertNull(authenticationService.authenticateUser(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
+        assertTrue(authenticationService.authenticateUser(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP).isError());
     }
 
     @Test
     public void testAuthenticateUserFailureForPassword() {
-        assertNull(authenticationService.authenticateUser(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP));
+        assertTrue(authenticationService.authenticateUser(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP).isError());
     }
 
     @Test
     public void testAuthenticateUserFailureForApp() {
-        assertNull(authenticationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
+        assertTrue(authenticationService.authenticateUser(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP).isError());
     }
 
     @Test
     public void testAuthenticateExistingUserUnauthorizedFail() {
-        assertNull(authenticationService.authenticateUser(EMAIL_USER_UNAUTHORIZED, RIGHT_PASSWORD, RIGHT_APP));
+        assertTrue(
+                authenticationService.authenticateUser(EMAIL_USER_UNAUTHORIZED, RIGHT_PASSWORD, RIGHT_APP).isError());
     }
 
     @Test
@@ -54,22 +55,26 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
 
     @Test
     public void testAuthenticateUserWithLockStrategyFailureForEmail() {
-        assertNull(authenticationService.authenticateUserWithLockStrategy(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP));
+        assertTrue(authenticationService.authenticateUserWithLockStrategy(WRONG_EMAIL, RIGHT_PASSWORD, RIGHT_APP)
+                .isError());
     }
 
     @Test
     public void testAuthenticateUserWithLockStrategyFailureForPassword() {
-        assertNull(authenticationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP));
+        assertTrue(authenticationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, WRONG_PASSWORD, RIGHT_APP)
+                .isError());
     }
 
     @Test
     public void testAuthenticateUserWithLockStrategyFailureForApp() {
-        assertNull(authenticationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP));
+        assertTrue(authenticationService.authenticateUserWithLockStrategy(RIGHT_EMAIL, RIGHT_PASSWORD, WRONG_APP)
+                .isError());
     }
 
     @Test
     public void testAuthenticateLockedUserWithLockStrategyFail() {
-        assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP));
+        assertTrue(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_LOCKED, RIGHT_PASSWORD, RIGHT_APP)
+                .isError());
     }
 
     @Test
@@ -77,7 +82,8 @@ public class AuthenticationServiceTest extends AbstractBusinessSpringContextTest
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
         authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP);
-        assertNull(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP));
+        assertTrue(authenticationService.authenticateUserWithLockStrategy(EMAIL_USER_TO_LOCK, RIGHT_PASSWORD, WRONG_APP)
+                .isError());
     }
   
 }

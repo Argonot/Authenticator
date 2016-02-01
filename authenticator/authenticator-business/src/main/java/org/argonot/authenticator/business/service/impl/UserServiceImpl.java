@@ -3,6 +3,8 @@ package org.argonot.authenticator.business.service.impl;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.argonot.authenticator.business.dto.UserDTO;
 import org.argonot.authenticator.business.entity.Authorization;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.repository.ApplicationRepository;
@@ -11,6 +13,7 @@ import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.service.AuthorizationService;
 import org.argonot.authenticator.business.service.UserService;
 import org.argonot.commons.utils.CipherUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +28,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     
     private static final String ANONYMOUS_AVATAR_RESOURCE_PATH = "/resources/img/anonymous_200.gif";
+
+    /**
+     * Application logger
+     */
+    private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
+
+    @Autowired
+    private Mapper mapper;
 
     @Autowired
     private AuthorizationService authorizationService;
@@ -57,7 +68,6 @@ public class UserServiceImpl implements UserService {
         } catch(Exception e) {
             return false;
         }
-        
     }
 
     /**
@@ -83,7 +93,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User update(User userProvided, long idUser) {
+    public UserDTO update(User userProvided, long idUser) {
         User user = userRepository.findOne(idUser);
         if (user != null) {
             user.setEmail(userProvided.getEmail());
@@ -93,9 +103,11 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(CipherUtils.encrypt(userProvided.getPassword()));
             }
             userRepository.save(user);
-            return user;
+            return this.mapper.map(user, UserDTO.class);
         }
-        return null;
+        String errorMessage = "Impossible to update user";
+        LOGGER.warn(errorMessage);
+        return new UserDTO(true, errorMessage);
     }
 
     /**
@@ -113,7 +125,7 @@ public class UserServiceImpl implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User subscribe(User subscribingUser, String auid, String ruid, String contextPath) {
+    public UserDTO subscribe(User subscribingUser, String auid, String ruid, String contextPath) {
         User user = userRepository.findByEmailIgnoreCase(subscribingUser.getEmail());
         if(user == null) {
             subscribingUser.setAvatar(contextPath + ANONYMOUS_AVATAR_RESOURCE_PATH);
@@ -123,9 +135,11 @@ public class UserServiceImpl implements UserService {
         } else if(user != null && !authorizationService.existsAuthorization(user, auid, ruid)) {
             authorizationService.create(new Authorization(user, appRepository.findOne(auid) , roleRepository.findOne(ruid)));
         } else {
-            return null;
+            String errorMessage = "Impossible to record user";
+            LOGGER.warn(errorMessage);
+            return new UserDTO(true, errorMessage);
         }
-        return user;
+        return this.mapper.map(user, UserDTO.class);
     }
 
 }

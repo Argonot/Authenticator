@@ -4,6 +4,7 @@
 package org.argonot.authenticator.business.service.impl;
 
 import org.apache.log4j.Logger;
+import org.argonot.authenticator.business.dto.UserDTO;
 import org.argonot.authenticator.business.entity.Application;
 import org.argonot.authenticator.business.entity.Authorization;
 import org.argonot.authenticator.business.entity.User;
@@ -12,6 +13,7 @@ import org.argonot.authenticator.business.repository.AuthorizationRepository;
 import org.argonot.authenticator.business.repository.UserRepository;
 import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.commons.utils.CipherUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private static final Logger LOGGER = Logger.getLogger(AuthenticationServiceImpl.class);
 
     @Autowired
+    private Mapper mapper;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -48,29 +53,31 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * {@inheritDoc}
      */
     @Override
-    public User authenticateUser(String email, String password, String appUID) {
+    public UserDTO authenticateUser(String email, String password, String appUID) {
         User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID)) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
-            return user;
+            return this.mapper.map(user, UserDTO.class);
         }
-        LOGGER.warn("Authentication failure for user " + email + " on " + appUID);
-        return null;
+        String errorMessage = "Authentication failure for user " + email + " on " + appUID;
+        LOGGER.warn(errorMessage);
+        return new UserDTO(true, errorMessage);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public User authenticateUserWithLockStrategy(String email, String password, String appUID) {
+    public UserDTO authenticateUserWithLockStrategy(String email, String password, String appUID) {
         User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked()) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
-            return user;
+            return this.mapper.map(user, UserDTO.class);
         }
-        LOGGER.warn("Authentication failure for user " + email);
         processAuthenticationFailure(user);
-        return null;
+        String errorMessage = "Authentication failure for user " + email;
+        LOGGER.warn(errorMessage);
+        return new UserDTO(true, errorMessage);
     }
 
     /**

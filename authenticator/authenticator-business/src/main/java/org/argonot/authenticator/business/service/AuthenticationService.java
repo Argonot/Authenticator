@@ -3,7 +3,7 @@
 
 package org.argonot.authenticator.business.service;
 
-import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.dto.UserDTO;
 
 
 /**
@@ -20,7 +20,7 @@ public interface AuthenticationService {
      * @param appUID : application unique identifier
      * @return success : user | fail : null
      */
-    User authenticateUser(String email, String password, String appUID);
+    UserDTO authenticateUser(String email, String password, String appUID);
     
     /**
      * Try to authenticate a User by email and password provided with three tries before the account is locked
@@ -29,5 +29,5 @@ public interface AuthenticationService {
      * @param appUID
      * @return
      */
-    User authenticateUserWithLockStrategy(String email, String password, String appUID);
+    UserDTO authenticateUserWithLockStrategy(String email, String password, String appUID);
 }

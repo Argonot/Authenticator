@@ -3,7 +3,6 @@ package org.argonot.authenticator.business.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -116,7 +115,8 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
     @Test
     public void testSubscribeUserAlreadyExistsWithAuthorization() {
         subscribingUser.setEmail(EXISTING_USER_EMAIL);
-        assertNull(userService.subscribe(subscribingUser, FORGE_APP_AUID, ADMIN_ROLE_RUID, LOCAL_AUTHENTICATOR_URL));
+        assertTrue(userService.subscribe(subscribingUser, FORGE_APP_AUID, ADMIN_ROLE_RUID, LOCAL_AUTHENTICATOR_URL)
+                .isError());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class UserServiceTest extends AbstractBusinessSpringContextTest {
 
     @Test
     public void testUpdateUnexistingUser() {
-        assertNull(userService.update(updateUser, UNKNOWN_USER_ID));
+        assertTrue(userService.update(updateUser, UNKNOWN_USER_ID).isError());
     }
 
     @Test

@@ -51,6 +51,16 @@ public class CredentialsVO {
     private String avatar;
 
     /**
+     * An error occured : impossible to get the user
+     */
+    private boolean error;
+
+    /**
+     * The error message
+     */
+    private String message;
+
+    /**
      * @return the email
      */
     public String getEmail() {
@@ -148,12 +158,49 @@ public class CredentialsVO {
         this.idUser = idUser;
     }
 
+    /**
+     * @return the avatar
+     */
     public String getAvatar() {
         return avatar;
     }
 
+    /**
+     * @param avatar
+     *            the avatar to set
+     */
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    /**
+     * @return the error
+     */
+    public boolean isError() {
+        return error;
+    }
+
+    /**
+     * @param error
+     *            the error to set
+     */
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message
+     *            the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

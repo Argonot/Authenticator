@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.argonot.authenticator.api.utils.AbstractAuthenticatorController;
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.argonot.authenticator.business.entity.User;
+import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.authenticator.business.service.UserService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,50 @@ public class UserController extends AbstractAuthenticatorController {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
+    /**
+     * Simply authenticate a User from his credentials
+     * 
+     * @param credentials
+     *            : user authentication information
+     * @return credentials in json
+     */
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public CredentialsVO authenticateUser(@RequestBody CredentialsVO credentials) {
+        return mapper.map(authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(),
+                credentials.getAuid()), CredentialsVO.class);
+    }
     
     /**
+     * Authenticate a User from his credentials with 3 tries before account lock
+     * 
+     * @param credentials
+     *            : user authentication information
+     * @return credentials in json
+     */
+    @RequestMapping(value = "/authenticate/strong", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public CredentialsVO strongAuthenticateUser(@RequestBody CredentialsVO credentials) {
+        return mapper.map(authenticationService.authenticateUserWithLockStrategy(credentials.getEmail(),
+                credentials.getPassword(), credentials.getAuid()), CredentialsVO.class);
+    }
+
+    /**
      * Route for subscribing User to an app
-     * @param credentials : user credentials
+     * 
+     * @param credentials
+     *            : user credentials
      * @return recorded user
      */
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
-    public User subscribeUser(@RequestBody CredentialsVO credentials, HttpServletRequest request) {
-        return userService.subscribe(mapper.map(credentials, User.class), credentials.getAuid(), credentials.getRuid(),
-                this.getRootUrl(request));
+    public CredentialsVO subscribeUser(@RequestBody CredentialsVO credentials, HttpServletRequest request) {
+        return this.mapper.map(userService.subscribe(mapper.map(credentials, User.class), credentials.getAuid(),
+                credentials.getRuid(), this.getRootUrl(request)), CredentialsVO.class);
     }
     
     /**
@@ -52,8 +86,8 @@ public class UserController extends AbstractAuthenticatorController {
      */
     @RequestMapping(value = "/update/{idUser}", method = RequestMethod.POST, headers="Accept=application/json")
     @ResponseBody
-    public User updateUser(@RequestBody CredentialsVO credentials, @PathVariable long idUser) {
-        return userService.update(mapper.map(credentials, User.class), idUser);
+    public CredentialsVO updateUser(@RequestBody CredentialsVO credentials, @PathVariable long idUser) {
+        return this.mapper.map(userService.update(mapper.map(credentials, User.class), idUser), CredentialsVO.class);
     }
 
 }
