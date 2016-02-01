@@ -1,5 +1,11 @@
 package org.argonot.authenticator.business.dto;
 
+/**
+ * User Data Transfer Object
+ * 
+ * @author Meidi
+ *
+ */
 public class UserDTO {
 
     /**

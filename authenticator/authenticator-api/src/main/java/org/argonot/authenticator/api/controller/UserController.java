@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/users")
 public class UserController extends AbstractAuthenticatorController {
     
+    private static final String ACCEPT_APPLICATION_JSON_HEADER = "Accept=application/json";
+
     @Autowired
     private Mapper mapper;
     
@@ -44,7 +46,7 @@ public class UserController extends AbstractAuthenticatorController {
      *            : user authentication information
      * @return credentials in json
      */
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
     public CredentialsVO authenticateUser(@RequestBody CredentialsVO credentials) {
         return mapper.map(authenticationService.authenticateUser(credentials.getEmail(), credentials.getPassword(),
@@ -58,7 +60,7 @@ public class UserController extends AbstractAuthenticatorController {
      *            : user authentication information
      * @return credentials in json
      */
-    @RequestMapping(value = "/authenticate/strong", method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(value = "/authenticate/strong", method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
     public CredentialsVO strongAuthenticateUser(@RequestBody CredentialsVO credentials) {
         return mapper.map(authenticationService.authenticateUserWithLockStrategy(credentials.getEmail(),
@@ -72,7 +74,7 @@ public class UserController extends AbstractAuthenticatorController {
      *            : user credentials
      * @return recorded user
      */
-    @RequestMapping(value = "/subscribe", method = RequestMethod.POST, headers="Accept=application/json")
+    @RequestMapping(value = "/subscribe", method = RequestMethod.POST, headers=ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
     public CredentialsVO subscribeUser(@RequestBody CredentialsVO credentials, HttpServletRequest request) {
         return this.mapper.map(userService.subscribe(mapper.map(credentials, User.class), credentials.getAuid(),
@@ -84,7 +86,7 @@ public class UserController extends AbstractAuthenticatorController {
      * @param credentials : user credentials
      * @return recorded user
      */
-    @RequestMapping(value = "/update/{idUser}", method = RequestMethod.POST, headers="Accept=application/json")
+    @RequestMapping(value = "/update/{idUser}", method = RequestMethod.POST, headers=ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
     public CredentialsVO updateUser(@RequestBody CredentialsVO credentials, @PathVariable long idUser) {
         return this.mapper.map(userService.update(mapper.map(credentials, User.class), idUser), CredentialsVO.class);
