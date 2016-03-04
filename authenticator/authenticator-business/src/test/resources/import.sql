@@ -5,7 +5,6 @@ INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserU
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UserToRemoveName', 'UserToRemoveSurname', 'usertoremove@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('UpdateUserName', 'UpdateUserSurname', 'updateuser@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', false, 0);
 INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('lockedUser', 'lockedUser', 'lockedUser@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', true, 3);
-INSERT INTO users (name, surname, email, password, locked, tries) VALUES ('accountUpdateName', 'accountUpdateSurname', 'accountUpdate@gmail.com', 'vjZn7mxIbux578oxUfoU1A==', true, 3);
 INSERT INTO applications(AUID, name) VALUES('TKP', 'Trello KPI');
 INSERT INTO applications(AUID, name) VALUES('FRG', 'Forge Argonot');
 INSERT INTO applications(AUID, name) VALUES('UPD', 'Update');
@@ -20,4 +19,3 @@ INSERT INTO authorizations(id_user, AUID, RUID) VALUES(3, 'FRG', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'FRG', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'TKP', 'USR');
 INSERT INTO authorizations(id_user, AUID, RUID) VALUES(5, 'FRG', 'ADM');
-INSERT INTO authorizations(id_user, AUID, RUID) VALUES(8, 'FRG', 'USR');
