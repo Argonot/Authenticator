@@ -5,7 +5,6 @@ package org.argonot.authenticator.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.argonot.authenticator.api.utils.AbstractAuthenticatorController;
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.service.AuthenticationService;
