@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.argonot</groupId>
 	<artifactId>authenticator</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Authenticator Argonot</name>
 	<description>Provide authentication and role management for Argonot users</description>
