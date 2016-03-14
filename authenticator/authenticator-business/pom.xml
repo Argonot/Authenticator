@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.argonot</groupId>
 		<artifactId>authenticator</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>authenticator-business</artifactId>
 	<name>Argonot Authenticator Business Service</name>
