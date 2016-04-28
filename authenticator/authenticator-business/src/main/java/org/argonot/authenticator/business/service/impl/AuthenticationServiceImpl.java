@@ -58,7 +58,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID)) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
-            return this.mapper.map(user, UserDTO.class);
+            UserDTO userDto = this.mapper.map(user, UserDTO.class);
+            userDto.setRuid(getUserRole(user, appUID).getId());
+            return userDto;
         }
         String errorMessage = "Authentication failure for user " + email + " on " + appUID;
         LOGGER.warn(errorMessage);
