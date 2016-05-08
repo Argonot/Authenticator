@@ -77,4 +77,15 @@ public interface UserService {
      * @return the user
      */
     UserDTO subscribe(User user, String auid, String ruid, String contextPath);
+
+    /**
+     * Save the user avatar on server and return the URL
+     * @param avatarBase64
+     * @param avatar upload folder
+     * @param avatar upload url
+     * @param user to update
+     * @return avatar URL
+     */
+    User updateUserAvatar(String avatarBase64, String folder, String baseUrl, User user);
+
 }
