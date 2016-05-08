@@ -9,6 +9,7 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="org.argonot.authenticator" />
+	<context:property-placeholder location="classpath*:config.properties"/>
 
 	<!-- BoneCP configuration -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"

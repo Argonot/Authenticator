@@ -20,6 +20,7 @@ public class UserControllerTest extends AbstractControllerTest {
     private static final String UPDATER_SURNAME = "updaterSurname";
     private static final String SUBSCRIBE_ROUTE = "/users/subscribe";
     private static final String UPDATE_ROUTE = "/users/update/8";
+    private static final String UPDATE_AVATAR_ROUTE = "/users/avatar/upload";
 
     private static final ObjectMapper jsonMapper = new ObjectMapper();
     private static final CredentialsVO subscriberCredentials = new CredentialsVO();
@@ -75,6 +76,13 @@ public class UserControllerTest extends AbstractControllerTest {
     public void testUpdateUser() throws Exception {
         this.request.setContent(jsonMapper.writeValueAsBytes(updaterCredentials));
         this.testJsonObjectRoute(UPDATE_ROUTE, HTTP_POST_METHOD);
+    }
+    
+    @Test
+    public void testUpdateUserAvatar() throws Exception {
+        this.request.setContent(jsonMapper.writeValueAsBytes(""));
+        this.request.setContent(jsonMapper.writeValueAsBytes(updaterCredentials));
+        this.testJsonObjectRoute(UPDATE_AVATAR_ROUTE, HTTP_POST_METHOD);
     }
 
 }
