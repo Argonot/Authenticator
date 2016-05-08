@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.argonot.authenticator.business.dto.UserDTO;
 import org.argonot.authenticator.business.entity.Application;
 import org.argonot.authenticator.business.entity.Authorization;
+import org.argonot.authenticator.business.entity.Role;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.repository.ApplicationRepository;
 import org.argonot.authenticator.business.repository.AuthorizationRepository;
@@ -57,7 +58,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID)) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
-            return this.mapper.map(user, UserDTO.class);
+            UserDTO userDto = this.mapper.map(user, UserDTO.class);
+            userDto.setRuid(getUserRole(user, appUID).getId());
+            return userDto;
         }
         String errorMessage = "Authentication failure for user " + email + " on " + appUID;
         LOGGER.warn(errorMessage);
@@ -72,7 +75,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmailIgnoreCase(email);
         if(user != null && isAuthorizedUser(user, password, appUID) && !user.isLocked()) {
             LOGGER.info("Authentication success for user " + email + "on application " + appUID);
-            return this.mapper.map(user, UserDTO.class);
+            UserDTO userDto = this.mapper.map(user, UserDTO.class);
+            userDto.setRuid(getUserRole(user, appUID).getId());
+            return userDto;
         }
         processAuthenticationFailure(user);
         String errorMessage = "Authentication failure for user " + email;
@@ -140,5 +145,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             userRepository.save(user);
             LOGGER.warn("User account was locked by the system for user " + user.getEmail());
         }
+    }
+
+    /**
+     * Get a role from a user on an app
+     * 
+     * @param user
+     * @param appUID
+     * @return
+     */
+    private Role getUserRole(User user, String appUID) {
+        Application app = applicationRepository.findOne(appUID);
+        Authorization authorization = authorizationRepository.findByUserAndApp(user, app);
+        return authorization.getRole();
     }
 }
