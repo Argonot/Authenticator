@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.argonot.authenticator.api.util.EnvironmentVariables;
 import org.argonot.authenticator.api.vo.CredentialsVO;
+import org.argonot.authenticator.api.vo.UserAvatarVO;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.service.AuthenticationService;
 import org.argonot.authenticator.business.service.UserService;
@@ -103,8 +104,8 @@ public class UserController extends AbstractAuthenticatorController {
      */
     @RequestMapping(value = "/avatar/upload", method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
-    public CredentialsVO updateUserAvatar(@RequestBody String avatarBase64, @RequestBody CredentialsVO user) {
-        return this.mapper.map(userService.updateUserAvatar(avatarBase64, environmentVariables.getAvatarUploadFolder(), environmentVariables.getAvatarUploadUrl(), this.mapper.map(user, User.class)), CredentialsVO.class);
+    public CredentialsVO updateUserAvatar(@RequestBody UserAvatarVO userAvatarVO) {
+        return this.mapper.map(userService.updateUserAvatar(userAvatarVO.getAvatarBase64(), environmentVariables.getAvatarUploadFolder(), environmentVariables.getAvatarUploadUrl(), this.mapper.map(userAvatarVO.getCredentialsVO(), User.class)), CredentialsVO.class);
     }
 
 }
