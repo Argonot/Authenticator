@@ -1,12 +1,8 @@
 package org.argonot.authenticator.business.service.impl;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.argonot.authenticator.business.dto.UserDTO;
 import org.argonot.authenticator.business.entity.Authorization;
@@ -31,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService {
     
-    private static final String FILE_NAME_SEPARATOR = "_";
     private static final String ANONYMOUS_AVATAR_RESOURCE_PATH = "/resources/img/anonymous_200.gif";
 
     /**
@@ -145,21 +140,6 @@ public class UserServiceImpl implements UserService {
             return new UserDTO(true, errorMessage);
         }
         return this.mapper.map(user, UserDTO.class);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public User updateUserAvatar(String avatarBase64, String folder, String baseUrl, User user) {
-        String fileName = user.getName() + FILE_NAME_SEPARATOR + user.getSurname() + FILE_NAME_SEPARATOR + user.getId() + ".jpg";
-        try (OutputStream stream = new FileOutputStream(folder + fileName)) {
-            stream.write(Base64.decodeBase64(avatarBase64.getBytes()));
-            user.setAvatar(baseUrl + fileName);
-        } catch (IOException e) {
-            LOGGER.warn("Erreur lors de l'enregistrement de l'avatar.");
-        }
-        return user;
     }
 
 }

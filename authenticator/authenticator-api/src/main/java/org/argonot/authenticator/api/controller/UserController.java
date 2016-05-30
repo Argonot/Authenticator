@@ -5,7 +5,6 @@ package org.argonot.authenticator.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.argonot.authenticator.api.util.EnvironmentVariables;
 import org.argonot.authenticator.api.vo.CredentialsVO;
 import org.argonot.authenticator.business.entity.User;
 import org.argonot.authenticator.business.service.AuthenticationService;
@@ -38,9 +37,6 @@ public class UserController extends AbstractAuthenticatorController {
 
     @Autowired
     private AuthenticationService authenticationService;
-    
-    @Autowired
-    private EnvironmentVariables environmentVariables;
 
     /**
      * Simply authenticate a User from his credentials
@@ -93,18 +89,6 @@ public class UserController extends AbstractAuthenticatorController {
     @ResponseBody
     public CredentialsVO updateUser(@RequestBody CredentialsVO credentials, @PathVariable long idUser) {
         return this.mapper.map(userService.update(mapper.map(credentials, User.class), idUser), CredentialsVO.class);
-    }
-    
-    /**
-     * Route to update a user avatar
-     * 
-     * @param avatar base64
-     * @return avatar URL
-     */
-    @RequestMapping(value = "/avatar/upload", method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON_HEADER)
-    @ResponseBody
-    public CredentialsVO updateUserAvatar(@RequestBody CredentialsVO credentials) {
-        return this.mapper.map(userService.updateUserAvatar(credentials.getAvatar(), environmentVariables.getAvatarUploadFolder(), environmentVariables.getAvatarUploadUrl(), this.mapper.map(credentials, User.class)), CredentialsVO.class);
     }
 
 }
