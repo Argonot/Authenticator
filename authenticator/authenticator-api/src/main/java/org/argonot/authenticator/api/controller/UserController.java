@@ -103,8 +103,8 @@ public class UserController extends AbstractAuthenticatorController {
      */
     @RequestMapping(value = "/avatar/upload", method = RequestMethod.POST, headers = ACCEPT_APPLICATION_JSON_HEADER)
     @ResponseBody
-    public CredentialsVO updateUserAvatar(@RequestBody CredentialsVO user) {
-        return this.mapper.map(userService.updateUserAvatar(user.getAvatar(), environmentVariables.getAvatarUploadFolder(), environmentVariables.getAvatarUploadUrl(), this.mapper.map(user, User.class)), CredentialsVO.class);
+    public void updateUserAvatar(@RequestBody CredentialsVO credentials) {
+        userService.updateUserAvatar(credentials.getAvatar(), environmentVariables.getAvatarUploadFolder(), environmentVariables.getAvatarUploadUrl(), this.mapper.map(credentials, User.class));
     }
 
 }
